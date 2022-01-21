@@ -93,7 +93,7 @@ export default function Index() {
                         CSS Components
                       </h6>
                       <p className="mb-4 text-blueGray-500">
-                        Notus React comes with a huge number of Fully Coded CSS
+                         comes with a huge number of Fully Coded CSS
                         components.
                       </p>
                     </div>
@@ -136,7 +136,7 @@ export default function Index() {
                       </h6>
                       <p className="mb-4 text-blueGray-500">
                         Built by developers for developers. You will love how
-                        easy is to to work with Notus React.
+                        easy is to to work with .
                       </p>
                     </div>
                   </div>
@@ -467,7 +467,7 @@ export default function Index() {
           <div className="w-full md:w-6/12 px-12 md:px-4">
             <h2 className="font-semibold text-4xl">Beautiful Example Pages</h2>
             <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500">
-              Notus React is a completly new product built using our past
+               is a completly new product built using our past
               experience in web templates. Take the examples we made for you and
               start playing with them.
             </p>
