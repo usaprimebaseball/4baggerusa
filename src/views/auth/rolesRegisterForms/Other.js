@@ -56,8 +56,10 @@ const Other = () => {
 
         if ( accountData.passwordConfirm !== accountData.password ) {
             setPasswordMatch(false);
+            setValidate(false);
         } else {
             setPasswordMatch(true);
+            setValidate(true);
         }
 
         if (validator !== null) {
@@ -77,15 +79,11 @@ const Other = () => {
 
         if (validate) {
             setValidate({});
+            setAccountData({...accountData, userName: ""});
             setAccountData({...accountData, firstName: ""});
             setAccountData({...accountData, lastName: ""});
             setAccountData({...accountData, email: ""});
             setAccountData({...accountData, phoneNumber: ""});
-            setAccountData({...accountData, teamName: ""});
-            setAccountData({...accountData, city: ""});
-            setAccountData({...accountData, state: ""});
-            setAccountData({...accountData, ageGroup: ""});
-            setAccountData({...accountData, division: ""});
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
             alert("Successfully Register User");
@@ -377,6 +375,7 @@ const Other = () => {
                 <input
                 id="customCheckLogin"
                 type="checkbox"
+                value={accountData.agreeBtn}
                 className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                 />
                 <span className="ml-2 text-sm font-semibold text-blueGray-600">

@@ -115,8 +115,10 @@ const Director = () => {
 
         if ( accountData.passwordConfirm !== accountData.password ) {
             setPasswordMatch(false);
+            setValidate(false);
         } else {
             setPasswordMatch(true);
+            setValidate(true);
         }
 
         if ( accountData.confirmRoutingNum !== accountData.routingNum ) {
@@ -934,6 +936,7 @@ const Director = () => {
                 <input
                 id="customCheckLogin"
                 type="checkbox"
+                value={accountData.agreeBtn}
                 className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                 />
                 <span className="ml-2 text-sm font-semibold text-blueGray-600">

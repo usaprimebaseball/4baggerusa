@@ -21,7 +21,7 @@ const Team = () => {
 
         let validator = Form.validator({
             teamName: {
-                value: accountData.companyName,
+                value: accountData.teamName,
                 isRequired: true,
             },
             firstName: {
@@ -75,8 +75,10 @@ const Team = () => {
 
         if ( accountData.passwordConfirm !== accountData.password ) {
             setPasswordMatch(false);
+            setValidate(false);
         } else {
             setPasswordMatch(true);
+            setValidate(true);
         }
 
         if (validator !== null) {
