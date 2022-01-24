@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import states from 'json/states';
 import Form from "utilities/Forms";
+import { Link } from "react-router-dom";
 
 const Director = () => {
     const [phone, setPhone] = useState("");
@@ -523,6 +524,15 @@ const Director = () => {
             >
                 Create Account
             </button>
+        </div>
+        <div className="text-center mt-6">
+            <Link
+                to="/auth/login"
+                className="text-primary hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+
+            >
+            Aready have an account ? Click here to log in
+            </Link>
         </div>
     </div>
     )

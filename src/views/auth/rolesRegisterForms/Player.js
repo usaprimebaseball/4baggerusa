@@ -6,6 +6,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import Stack from '@mui/material/Stack';
 import states from 'json/states';
+import { Link } from "react-router-dom";
 
 const Player = () => {
     const [phone, setPhone] = useState("");
@@ -486,6 +487,15 @@ const Player = () => {
             >
                 Create Account
             </button>
+        </div>
+        <div className="text-center mt-6">
+            <Link
+                to="/auth/login"
+                className="text-primary hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+
+            >
+            Aready have an account ? Click here to log in
+            </Link>
         </div>
     </div>        
     )
