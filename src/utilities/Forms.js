@@ -58,10 +58,12 @@ class Form {
     let validations = null;
 
     keys.map((key) => {
+      const result = key[0].replace(/([A-Z])/g, " $1");
+      const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
       if ("isRequired" in key[1] && key[1].isRequired) {
         if (key[1].value.length === 0) {
           results.push({
-            [key[0]]: [`The ${key[0]} is required.`],
+            [key[0]]: [`The ${finalResult} is required.`],
           });
         } else {
           if ("isEmail" in key[1] && key[1].isEmail) {
