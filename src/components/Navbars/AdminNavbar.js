@@ -1,6 +1,7 @@
 import React from "react";
 
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import Logo from "assets/img/logo.png";
 
 export default function Navbar() {
   return (

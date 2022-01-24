@@ -1,6 +1,8 @@
 /*eslint-disable*/
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "assets/img/logo.png";
+
 // components
 
 import EventsDropdown from "components/Dropdowns/EventsDropdown.js";
@@ -28,7 +30,7 @@ export default function Navbar(props) {
               to="/"
               className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
             >
-              <img src="http://www.4baggerusa.com/images/logo.png" style={{height:'85px'}}/>
+              <img src={Logo} style={{height:'85px'}}/>
             </Link>
             <button
               className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
