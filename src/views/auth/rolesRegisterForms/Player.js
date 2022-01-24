@@ -14,7 +14,7 @@ const Player = () => {
         role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
         street: "", city: "", state: "", zipcode: "", dob: new Date(), gradYear: "", collegeCommitment: "",
         height: "", weight: "",throw: "", bat: "", primPosition: "", seconPosition: "", parentFirst: "", parentLast: "", 
-        parentEmail: "", parentPhone: "", password: "", passwordConfirm: "", agreeBtn: ""
+        parentEmail: "", parentPhone: "", password: "", passwordConfirm: "", agreeBtn: false
     });
     const [validate, setValidate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
@@ -130,6 +130,10 @@ const Player = () => {
                 isRequired: true,
                 minLength: 6,
             },
+            agreeBtn: {
+                value: accountData.agreeBtn,
+                isRequired: true,
+            },
         });
 
         // Make sure our MUSt match fields are matching 
@@ -183,6 +187,7 @@ const Player = () => {
             setAccountData({...accountData, parentPhone: ""});
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
+            setAccountData({...accountData, agreeBtn: ""});
             alert("Successfully Register User");
         }
     };
@@ -220,6 +225,7 @@ const Player = () => {
                         : ""
                     }`}
                     value={accountData.profileImage}
+                    onDone={({base64}) => setAccountData({...accountData, profileImage: base64})}
                     multiple={false}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 />
@@ -403,7 +409,7 @@ const Player = () => {
             </div>
 
             <hr/><br/>
-            <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>address: <span style={{color:'red'}}>*</span></span><br/><br/>
+            <span className="uppercase text-info font-bold">address: <span style={{color:'red'}}>*</span></span><br/><br/>
 
             <div className='row'>
             <div className="relative col-12 mb-3">
@@ -479,15 +485,16 @@ const Player = () => {
                     </label>
                     <select
                         type="select"
-                        className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                        value={accountData.state}
+                        onChange={(e) => setAccountData({...accountData, state: e.target.value})}
+                        className={`form-control ${
                             validate.validate && validate.validate.state
                             ? "is-invalid "
                             : ""
                         }`}
                         >
-                        {states.map((state) => {
-                        return <option key={state.abbreviation}>{state.name}</option>
-                        })}
+                        <option defaultValue={true} value="">-- State --</option>
+                        { states.map((state) => <option key={state.abbreviation}>{state.name}</option> )}
                     </select>
                     <div
                         className={`invalid-feedback text-start ${
@@ -536,7 +543,7 @@ const Player = () => {
             </div>
             <hr/><br/>
 
-            <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>Date of Birth: <span style={{color:'red'}}>*</span></span><br/><br/>
+            <span className="uppercase text-info font-bold">Date of Birth: <span style={{color:'red'}}>*</span></span><br/><br/>
 
             <div className="relative w-full mb-3">
                 
@@ -715,14 +722,15 @@ const Player = () => {
                     </label>
                     <select
                     type="select"
-                    className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                    onChange={(e) => setAccountData({...accountData, throw: e.target.value})}
+                    className={`form-control ${
                         validate.validate && validate.validate.throw
-                        ? "is-invalid "
-                        : ""
-                    }`}                   
+                          ? "is-invalid "
+                          : ""
+                    }`}                 
                     placeholder="Name"
                     >
-                    <option disabled selected >Select..</option>
+                    <option defaultValue={true} value="">Select..</option>
                     <option value="left">left</option>
                     <option value="right">right</option>
                     <option value="both">both</option>
@@ -749,14 +757,15 @@ const Player = () => {
                     </label>
                     <select
                     type="select"
-                    className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                    onChange={(e) => setAccountData({...accountData, bat: e.target.value})}
+                    className={`form-control ${
                         validate.validate && validate.validate.bat
-                        ? "is-invalid "
-                        : ""
+                          ? "is-invalid "
+                          : ""
                     }`}
                     placeholder="Name"
                     >
-                    <option disabled selected >Select..</option>
+                    <option defaultValue={true} value="">Select..</option>
                     <option value="left">left</option>
                     <option value="right">right</option>
                     <option value="both">both</option>
@@ -785,14 +794,15 @@ const Player = () => {
                     </label>
                     <select
                     type="select"
-                    className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                    onChange={(e) => setAccountData({...accountData, primPosition: e.target.value})}
+                    className={`form-control ${
                         validate.validate && validate.validate.primPosition
-                        ? "is-invalid "
-                        : ""
+                          ? "is-invalid "
+                          : ""
                     }`}
                     placeholder="Name"
                     >
-                    <option disabled selected >Select..</option>
+                    <option defaultValue={true} value="">Select..</option>
                     <option value="c">C</option>
                     <option value="1b">1b</option>
                     <option value="2nd">2nd</option>
@@ -823,14 +833,15 @@ const Player = () => {
                     </label>
                     <select
                     type="select"
-                    className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                    onChange={(e) => setAccountData({...accountData, seconPosition: e.target.value})}
+                    className={`form-control ${
                         validate.validate && validate.validate.seconPosition
-                        ? "is-invalid "
-                        : ""
+                          ? "is-invalid "
+                          : ""
                     }`}
                     placeholder="Name"
                     >
-                    <option disabled selected >Select..</option>
+                    <option defaultValue={true} value="">Select..</option>
                     <option value="c">C</option>
                     <option value="1b">1b</option>
                     <option value="2nd">2nd</option>
@@ -856,7 +867,7 @@ const Player = () => {
 
             <hr/><br/>
 
-            <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>parent info: <span style={{color:'red'}}>*</span></span><br/><br/>
+            <span className="uppercase text-info font-bold">parent info: <span style={{color:'red'}}>*</span></span><br/><br/>
             <div className='row'>
                 <div className="relative col-md-6 col-xs-12 mb-3">
                     <label
@@ -989,9 +1000,9 @@ const Player = () => {
                         : ""}
                     </div>
                 </div>
-            </div>
+            </div><hr/><br/>
 
-            <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>set your password: <span style={{color:'red'}}>*</span></span><br/><br/>
+            <span className="uppercase text-info font-bold">set your password: <span style={{color:'red'}}>*</span></span><br/><br/>
 
             <div className='row'>
                 <div className="relative col-md-6 col-xs-12 mb-3">
@@ -1095,7 +1106,11 @@ const Player = () => {
                 id="customCheckLogin"
                 type="checkbox"
                 value={accountData.agreeBtn}
-                className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                onChange={(e) => setAccountData({...accountData, agreeBtn: e.target.checked})}
+                className={`form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150 ${
+                    validate.validate && validate.validate.agreeBtn
+                    ? "is-invalid "
+                    : ""}`}
                 />
                 <span className="ml-2 text-sm font-semibold text-blueGray-600">
                 I agree with the{" "}
@@ -1108,6 +1123,21 @@ const Player = () => {
                 </a>
                 </span>
             </label>
+            {!accountData.agreeBtn ?
+                <div className='alert alert-warning font-bold'>
+                <i class="fas fa-exclamation-triangle"></i> YOU MUST AGREE WITH THE PRIVACY POLICY TO COMPLETE REGISTRATION!
+            </div>: ""}
+            <div
+                className={`invalid-feedback text-start ${
+                validate.validate && validate.validate.agreeBtn
+                    ? "d-block"
+                    : "d-none"
+                }`}
+            >
+                {validate.validate && validate.validate.agreeBtn
+                ? validate.validate.agreeBtn[0]
+                : ""}
+            </div>
         </div>
         {!passwordMatch ?
         <div className='alert alert-danger'>
@@ -1121,15 +1151,6 @@ const Player = () => {
             >
                 Create Account
             </button>
-        </div>
-        <div className="text-center mt-6">
-            <Link
-                to="/auth/login"
-                className="text-primary hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-
-            >
-                Aready have an account ? Click here to log in
-            </Link>
         </div>
     </div>        
     )

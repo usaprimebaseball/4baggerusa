@@ -1,7 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Form from "utilities/Forms";
 
 export default function Login() {
+
+  const [accountData, setAccountData] = useState({
+    role: "team", teamName: "", firstName: "", lastName: "", email: "", phoneNumber: "", city: "", state: "", ageGroup: "", 
+    division: "", password: "", passwordConfirm: "", agreeBtn: ""
+});
+const [validate, setValidate] = useState({});
+const [showPassword, setShowPassword] = useState(false);
+const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+const [passwordMatch, setPasswordMatch] = useState(true);
+
+
+const validateRegister = () => {
+    let isValid = true;
+
+    let validator = Form.validator({
+        email: {
+            value: accountData.email,
+            isRequired: true,
+            isEmail: true,
+        },
+        password: {
+            value: accountData.password,
+            isRequired: true,
+            minLength: 6,
+        }
+    });
+
+    // Make sure our MUSt match fields are matching 
+
+    if ( accountData.passwordConfirm !== accountData.password ) {
+        setPasswordMatch(false);
+        setValidate(false);
+    } else {
+        setPasswordMatch(true);
+        setValidate(true);
+    }
+
+    if (validator !== null) {
+        setValidate({
+        validate: validator.errors,
+        });
+
+        isValid = false;
+    }
+    return isValid;
+};
+
+const login = (e) => {
+    e.preventDefault();
+
+    const validate = validateRegister();
+
+    if (validate) {
+        setValidate({});
+        setAccountData({...accountData, email: ""});
+        setAccountData({...accountData, password: ""});
+        alert("Successfully logged User");
+    }
+};
+
+const togglePassword = (e) => {
+    if (showPassword) {
+        setShowPassword(false);
+    } else {
+        setShowPassword(true);
+    }
+};
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -10,8 +78,11 @@ export default function Login() {
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
             <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
-                  <h6 className="text-blueGray-500 text-lg font-bold">
+                  <h6 className="text-blue text-xl font-bold" style={{color:'#0EA5E9'}}>
                     Sign in
+                  </h6><br/>
+                  <h6 className="text-success text-sm font-bold">
+                    Welcome Back!
                   </h6>
                 </div>
                 
@@ -21,17 +92,37 @@ export default function Login() {
                 </div>
                 <form>
                   <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Email
-                    </label>
-                    <input
+                      <label
+                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Email
+                      </label>
+                      <input
                       type="email"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                        validate.validate && validate.validate.email
+                          ? "is-invalid "
+                          : ""
+                      }`}
+                      id="email"
+                      name="email"
+                      value={accountData.email}
                       placeholder="Email"
+                      onChange={(e) =>setAccountData({...accountData, email: e.target.value})}
                     />
+
+                    <div
+                      className={`invalid-feedback text-start ${
+                        validate.validate && validate.validate.email
+                          ? "d-block"
+                          : "d-none"
+                      }`}
+                    >
+                      {validate.validate && validate.validate.email
+                        ? validate.validate.email[0]
+                        : ""}
+                    </div>
                   </div>
 
                   <div className="relative w-full mb-3">
@@ -41,11 +132,45 @@ export default function Login() {
                     >
                       Password
                     </label>
-                    <input
-                      type="password"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Password"
-                    />
+                    <div>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            validate.validate && validate.validate.password
+                                ? "is-invalid "
+                                : ""
+                            }`}
+                            name="password"
+                            id="password"
+                            value={accountData.password}
+                            placeholder="Password"
+                            onChange={(e) => setAccountData({...accountData, password: e.target.value})}
+                          />
+                        <br/>
+                        <button
+                            type="button"
+                            className="btn btn-outline-primary btn-sm "
+                            onClick={(e) => togglePassword(e)}
+                        >
+                            <i
+                            className={
+                                showPassword ? "far fa-eye" : "far fa-eye-slash"
+                            }
+                            ></i>{" "}
+                        </button>
+
+                        <div
+                            className={`invalid-feedback text-start ${
+                            validate.validate && validate.validate.password
+                                ? "d-block"
+                                : "d-none"
+                            }`}
+                        >
+                            {validate.validate && validate.validate.password
+                            ? validate.validate.password[0]
+                            : ""}
+                        </div>
+                    </div>
                   </div>
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
@@ -65,6 +190,7 @@ export default function Login() {
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
                       to="/admin/dashboard"
+                      onClick={login}
                     >
                       Sign In
                     </button>

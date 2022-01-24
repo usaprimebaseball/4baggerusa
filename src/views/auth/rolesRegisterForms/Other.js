@@ -376,6 +376,7 @@ const Other = () => {
                 id="customCheckLogin"
                 type="checkbox"
                 value={accountData.agreeBtn}
+                onChange={(e) => setAccountData({...accountData, agreeBtn: e.target.checked})}
                 className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                 />
                 <span className="ml-2 text-sm font-semibold text-blueGray-600">
@@ -389,6 +390,10 @@ const Other = () => {
                 </a>
                 </span>
             </label>
+            {!accountData.agreeBtn ?
+                <div className='alert alert-warning font-bold'>
+                <i class="fas fa-exclamation-triangle"></i> YOU MUST AGREE WITH THE PRIVACY POLICY TO COMPLETE REGISTRATION!
+            </div>: ""}
         </div>
         {!passwordMatch ?
         <div className='alert alert-danger'>
@@ -402,15 +407,6 @@ const Other = () => {
             >
                 Create Account
             </button>
-        </div>
-        <div className="text-center mt-6">
-            <Link
-                to="/auth/login"
-                className="text-primary hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-
-            >
-            Aready have an account ? Click here to log in
-            </Link>
         </div>
     </div>
     )

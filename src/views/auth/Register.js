@@ -3,7 +3,7 @@ import Other from "./rolesRegisterForms/Other";
 import Director from "./rolesRegisterForms/Director";
 import Player from "./rolesRegisterForms/Player";
 import Team from "./rolesRegisterForms/Team";
-
+import { Link } from "react-router-dom";
 
 export default function Register() {
 
@@ -25,11 +25,11 @@ export default function Register() {
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
-                  <h6 className="text-blueGray-400 text-lg font-bold">
+                  <h1 className="text-blue text-xl font-bold" style={{color:'#0EA5E9'}}>
                     REGISTER
-                  </h6><br/>
-                  <h6 style={{color:"#007bff"}} className="text-xs font-bold">
-                    Please choose your role, and fill all the required information according to your role.
+                  </h1><br/>
+                  <h6 className="text-dark text-sm font-bold">
+                    Please choose your role, and fill all the required information <br/>according to your role.
                   </h6>
                 </div>
                 
@@ -40,7 +40,7 @@ export default function Register() {
                 <form>
                   <div className="relative w-full mb-3">
                       <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="uppercase text-info font-bold"
                         htmlFor="grid-password"
                       >
                         Role <span style={{color:'red'}}>*</span>
@@ -51,7 +51,7 @@ export default function Register() {
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Name"
                       >
-                        <option disabled selected value="">Choose your role..</option>
+                        <option defaultValue={true} value="">-- CHOOSE YOUR ROLE --</option>
                         <option value="director">Director</option>
                         <option value="team">Team</option>
                         <option value="player">Player</option>
@@ -67,6 +67,15 @@ export default function Register() {
                       <Player />: roleValue === "other"?
                       <Other />:""
                     }
+                    <div className="text-center mt-6">
+                        <Link
+                            to="/auth/login"
+                            className="text-info hover:text-blueGray-800 font-semibold block pb-2 font-bold text-sm"
+
+                        >
+                        Already have an account ? Click here to log in
+                        </Link>
+                    </div>
                 </form>
               </div>
             </div>

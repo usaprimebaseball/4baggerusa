@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import states from 'json/states';
 import Form from "utilities/Forms";
-import { Link } from "react-router-dom";
 
 const Director = () => {
     const [accountData, setAccountData] = useState({
@@ -58,6 +57,7 @@ const Director = () => {
             state: {
                 value: accountData.state,
                 isRequired: true,
+                maxLength: 2
             },
             zipcode: {
                 value: accountData.zipcode,
@@ -145,6 +145,7 @@ const Director = () => {
 
     const register = (e) => {
         e.preventDefault();
+        console.log(accountData.state)
 
         const validate = validateRegister();
 
@@ -223,7 +224,7 @@ const Director = () => {
                     : "d-none"
                 }`}
                 >
-                {validate.validate && validate.validate.lastName
+                {validate.validate && validate.validate.firstName
                     ? validate.validate.firstName[0]
                     : ""}
                 </div>
@@ -399,7 +400,7 @@ const Director = () => {
         </div>
         
         <hr/><br/>
-        <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>address: <span style={{color:'red'}}>*</span></span><br/><br/>
+        <span className="uppercase text-info font-bold">address: <span style={{color:'red'}}>*</span></span><br/><br/>
         <div className='row'>
             <div className="relative col-12 mb-3">
                 <label
@@ -474,15 +475,16 @@ const Director = () => {
                 </label>
                 <select
                     type="select"
-                    className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                    value={accountData.state}
+                    onChange={(e) => setAccountData({...accountData, state: e.target.value})}
+                    className={`form-control ${
                         validate.validate && validate.validate.state
-                        ? "is-invalid "
-                        : ""
-                    }`}
+                          ? "is-invalid "
+                          : ""
+                      }`}
                     >
-                    {states.map((state) => {
-                    return <option key={state.abbreviation}>{state.name}</option>
-                    })}
+                    <option defaultValue={true} value="">-- State --</option>
+                    { states.map((state) => <option key={state.abbreviation}>{state.name}</option> )}
                 </select>
                 <div
                     className={`invalid-feedback text-start ${
@@ -532,7 +534,7 @@ const Director = () => {
         
         <hr/><br/>
 
-        <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>The following is where we will deposit all of your team entry fees: <span style={{color:'red'}}>*</span></span><br/><br/>
+        <span className="uppercase text-info font-bold">The following is where we will deposit all of your team entry fees: <span style={{color:'red'}}>*</span></span><br/><br/>
         
         <div className='row'>
             <div className="relative col-12 mb-3">
@@ -697,7 +699,7 @@ const Director = () => {
         
         <hr/><br/>
 
-        <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>Please complete the following info for each field/complex where you throw tournaments: <span style={{color:'red'}}>*</span></span><br/><br/>
+        <span className="uppercase text-info font-bold">Please complete the following info for each field/complex where you throw tournaments: <span style={{color:'red'}}>*</span></span><br/><br/>
         <div className="relative w-full mb-3">
           <label
             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -763,7 +765,7 @@ const Director = () => {
 
         <hr/><br/>
 
-        <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>City and state where fields/complex are located: <span style={{color:'red'}}>*</span></span><br/><br/>
+        <span className="uppercase text-info font-bold">City and state where fields/complex are located: <span style={{color:'red'}}>*</span></span><br/><br/>
         <div className='row'>
             <div className="relative col-md-6 col-xs-12 mb-3">
                 <label
@@ -806,17 +808,16 @@ const Director = () => {
                 <select
                     type="select"
                     value={accountData.fieldComplexState}
-                    className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                    onChange={(e) => setAccountData({...accountData, fieldComplexState: e.target.value})}
+                    className={`form-control ${
                         validate.validate && validate.validate.fieldComplexState
-                        ? "is-invalid "
-                        : ""
+                          ? "is-invalid "
+                          : ""
                     }`}
                     placeholder="State"
                     >
-                    <option disabled selected >-- State --</option>
-                    {states.map((state) => {
-                    return <option key={state.abbreviation}>{state.name}</option>
-                    })}
+                    <option defaultValue={true} value="">-- State --</option>
+                    { states.map((state) => <option key={state.abbreviation}>{state.name}</option> )}
                 </select>
                 <div
                     className={`invalid-feedback text-start ${
@@ -832,7 +833,7 @@ const Director = () => {
             </div>
         </div><hr/><br/>
 
-        <span className="uppercase" style={{color:"orange", fontWeight:'bold'}}>set your password: <span style={{color:'red'}}>*</span></span><br/><br/>
+        <span className="uppercase text-info font-bold">set your password: <span style={{color:'red'}}>*</span></span><br/><br/>
 
         <div className='row'>
             <div className="relative col-md-6 col-xs-12 mb-3">
@@ -937,6 +938,7 @@ const Director = () => {
                 id="customCheckLogin"
                 type="checkbox"
                 value={accountData.agreeBtn}
+                onChange={(e) => setAccountData({...accountData, agreeBtn: e.target.checked})}
                 className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                 />
                 <span className="ml-2 text-sm font-semibold text-blueGray-600">
@@ -950,6 +952,10 @@ const Director = () => {
                 </a>
                 </span>
             </label>
+            {!accountData.agreeBtn ?
+                <div className='alert alert-warning font-bold'>
+                <i class="fas fa-exclamation-triangle"></i> YOU MUST AGREE WITH THE PRIVACY POLICY TO COMPLETE REGISTRATION!
+            </div>: ""}
         </div>
 
         {!passwordMatch ?
@@ -975,15 +981,6 @@ const Director = () => {
             >
                 Create Account
             </button>
-        </div>
-        <div className="text-center mt-6">
-            <Link
-                to="/auth/login"
-                className="text-primary hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-
-            >
-            Aready have an account ? Click here to log in
-            </Link>
         </div>
     </div>
     )
