@@ -52,11 +52,11 @@ const Team = () => {
                 isRequired: true,
             },
             ageGroup: {
-                value: accountData.primPosition,
+                value: accountData.ageGroup,
                 isRequired: true,
             },
             division: {
-                value: accountData.seconPosition,
+                value: accountData.division,
                 isRequired: true,
             },
             password: {
