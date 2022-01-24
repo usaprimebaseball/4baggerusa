@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import FileBase from 'react-file-base64';
 import states from 'json/states';
-import { Link } from "react-router-dom";
 import Form from "utilities/Forms";
 
 const Team = () => {

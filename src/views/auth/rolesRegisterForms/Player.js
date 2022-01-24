@@ -6,7 +6,6 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import Stack from '@mui/material/Stack';
 import states from 'json/states';
-import { Link } from "react-router-dom";
 import Form from "utilities/Forms";
 
 const Player = () => {
