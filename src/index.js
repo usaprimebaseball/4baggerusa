@@ -27,9 +27,9 @@ ReactDOM.render(
       <Route path="/aboutus" exact component={AboutUs} />
       <Route path="/contactus" exact component={ContactUs} />
       <Route path="/rules" exact component={Rules} />
-      <Route path="/" exact component={Index} />
+      <Route path="/4baggerusa" exact component={Index} />
       {/* add redirect for first page */}
-      <Redirect from="*" to="/" />
+      <Redirect from="*" to="/4baggerusa" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
