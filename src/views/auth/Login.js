@@ -1,75 +1,68 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "utilities/Forms";
+import { signin } from 'actions/auth';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+const initialState = { email: "", password: "" }
 
 export default function Login() {
 
-  const [accountData, setAccountData] = useState({
-    role: "team", teamName: "", firstName: "", lastName: "", email: "", phoneNumber: "", city: "", state: "", ageGroup: "", 
-    division: "", password: "", passwordConfirm: "", agreeBtn: ""
-});
-const [validate, setValidate] = useState({});
-const [showPassword, setShowPassword] = useState(false);
-const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-const [passwordMatch, setPasswordMatch] = useState(true);
+  const [accountData, setAccountData] = useState(initialState);
+  const [validate, setValidate] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-const validateRegister = () => {
-    let isValid = true;
+  const validateRegister = () => {
+      let isValid = true;
 
-    let validator = Form.validator({
-        email: {
-            value: accountData.email,
-            isRequired: true,
-            isEmail: true,
-        },
-        password: {
-            value: accountData.password,
-            isRequired: true,
-            minLength: 6,
-        }
-    });
+      let validator = Form.validator({
+          email: {
+              value: accountData.email,
+              isRequired: true,
+              isEmail: true,
+          },
+          password: {
+              value: accountData.password,
+              isRequired: true,
+              minLength: 6,
+          }
+      });
 
-    // Make sure our MUSt match fields are matching 
+      if (validator !== null) {
+          setValidate({
+          validate: validator.errors,
+          });
 
-    if ( accountData.passwordConfirm !== accountData.password ) {
-        setPasswordMatch(false);
-        setValidate(false);
-    } else {
-        setPasswordMatch(true);
-        setValidate(true);
-    }
+          isValid = false;
+      }
+      return isValid;
+  };
 
-    if (validator !== null) {
-        setValidate({
-        validate: validator.errors,
-        });
+  const login = (e) => {
+      e.preventDefault();
 
-        isValid = false;
-    }
-    return isValid;
-};
+      const validate = validateRegister();
 
-const login = (e) => {
-    e.preventDefault();
+      if (validate) {
+          setValidate({});
+          setAccountData({...accountData, email: ""});
+          setAccountData({...accountData, password: ""});
 
-    const validate = validateRegister();
+          dispatch(signin(accountData, history));
+      }
+  };
 
-    if (validate) {
-        setValidate({});
-        setAccountData({...accountData, email: ""});
-        setAccountData({...accountData, password: ""});
-        alert("Successfully logged User");
-    }
-};
-
-const togglePassword = (e) => {
-    if (showPassword) {
-        setShowPassword(false);
-    } else {
-        setShowPassword(true);
-    }
-};
+  const togglePassword = (e) => {
+      if (showPassword) {
+          setShowPassword(false);
+      } else {
+          setShowPassword(true);
+      }
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -189,7 +182,6 @@ const togglePassword = (e) => {
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
-                      to="/admin/dashboard"
                       onClick={login}
                     >
                       Sign In
@@ -209,7 +201,7 @@ const togglePassword = (e) => {
                 </a>
               </div>
               <div className="w-1/2 text-right">
-                <Link to="/auth/register" className="text-blueGray-200">
+                <Link to="/auth/signup" className="text-blueGray-200">
                   <small>Create new account</small>
                 </Link>
               </div>

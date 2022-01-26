@@ -2,19 +2,26 @@ import React, { useState } from 'react';
 import FileBase from 'react-file-base64';
 import states from 'json/states';
 import Form from "utilities/Forms";
+import { teamsignup } from 'actions/auth';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+const initialState = {
+    active: false, role: "team", profileImage: "", teamName: "", firstName: "", lastName: "", email: "", phoneNumber: "", city: "", state: "", ageGroup: "", 
+    division: "", password: "", passwordConfirm: "", agreeBtn: ""
+};
 
 const Team = () => {
 
-    const [accountData, setAccountData] = useState({
-        role: "team", profileImage: "", teamName: "", firstName: "", lastName: "", email: "", phoneNumber: "", city: "", state: "", ageGroup: "", 
-        division: "", password: "", passwordConfirm: "", agreeBtn: ""
-    });
+    const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
 
-    
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const validateRegister = () => {
         let isValid = true;
 
@@ -96,6 +103,8 @@ const Team = () => {
 
     const register = (e) => {
         e.preventDefault();
+        
+        console.log(accountData);
 
         const validate = validateRegister();
 
@@ -113,7 +122,8 @@ const Team = () => {
             setAccountData({...accountData, division: ""});
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
-            alert("Successfully Register User");
+
+            dispatch(teamsignup(accountData, history));
         }
     };
 

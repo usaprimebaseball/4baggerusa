@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { createPopper } from "@popperjs/core";
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 
+import decode from 'jwt-decode';
+
+import * as actionType from '../../constants/actionTypes';
 const UserDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
@@ -15,6 +21,32 @@ const UserDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
+
+  const logout = () => {
+    dispatch({ type: actionType.LOGOUT });
+
+    history.push('/auth');
+    
+    setUser(null);
+  };
+
+  useEffect(() => {
+    const token = user?.token;
+
+    if (token) {
+      const decodedToken = decode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
+
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [location]);
+  
   return (
     <>
       <a
@@ -27,13 +59,13 @@ const UserDropdown = () => {
         }}
       >
         <div className="items-center flex">
-          <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
-              alt="..."
-              className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("assets/img/team-1-800x800.jpg").default}
-            />
-          </span>
+          <a
+            className="btn btn-success text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold"
+            href="/4baggerusa"
+          >
+            <i class="fas fa-user-circle"></i>&nbsp;
+            Account
+          </a>
         </div>
       </a>
       <div
@@ -43,43 +75,22 @@ const UserDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
+        <Link
+          to="/admin/settings"
+          className="text-info hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
+          
         >
-          Action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
+          <i class="fas fa-tachometer-alt"></i>&nbsp;
+          Dashboard
+        </Link>
+        <Link
+          to="/"
+          className="text-info hover:text-blueGray-500 0 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
+          onClick={logout}
         >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
-        </a>
-        <div className="h-0 my-2 border border-solid border-blueGray-100" />
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Seprated link
-        </a>
+          <i class="fas fa-sm fa-sign-out-alt"></i>&nbsp;
+          Log Out
+        </Link>
       </div>
     </>
   );

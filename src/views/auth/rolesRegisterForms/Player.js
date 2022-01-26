@@ -7,18 +7,28 @@ import DatePicker from '@mui/lab/DatePicker';
 import Stack from '@mui/material/Stack';
 import states from 'json/states';
 import Form from "utilities/Forms";
+import { playersignup } from 'actions/auth';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { format } from 'date-fns';
+
+const initialState = {
+    active: false, role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
+    street: "", city: "", state: "", zipcode: "", dob: new Date(), gradYear: "", collegeCommitment: "",
+    height: "", weight: "",pThrow: "", bat: "", primPosition: "", seconPosition: "", parentFirst: "", parentLast: "", 
+    parentEmail: "", parentPhone: "", password: "", passwordConfirm: "", agreeBtn: false
+};
 
 const Player = () => {
-    const [accountData, setAccountData] = useState({
-        role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
-        street: "", city: "", state: "", zipcode: "", dob: new Date(), gradYear: "", collegeCommitment: "",
-        height: "", weight: "",throw: "", bat: "", primPosition: "", seconPosition: "", parentFirst: "", parentLast: "", 
-        parentEmail: "", parentPhone: "", password: "", passwordConfirm: "", agreeBtn: false
-    });
+    const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
 
     const validateRegister = () => {
         let isValid = true;
@@ -87,8 +97,8 @@ const Player = () => {
                 value: accountData.weight,
                 isRequired: true,
             },
-            throw: {
-                value: accountData.throw,
+            pThrow: {
+                value: accountData.pThrow,
                 isRequired: true,
             },
             bat: {
@@ -158,6 +168,9 @@ const Player = () => {
     const register = (e) => {
         e.preventDefault();
 
+        
+        console.log(accountData);
+
         const validate = validateRegister();
 
         if (validate) {
@@ -177,7 +190,7 @@ const Player = () => {
             setAccountData({...accountData, collegeCommitment: ""});
             setAccountData({...accountData, height: ""});
             setAccountData({...accountData, weight: ""});
-            setAccountData({...accountData, throw: ""});
+            setAccountData({...accountData, pThrow: ""});
             setAccountData({...accountData, bat: ""});
             setAccountData({...accountData, primPosition: ""});
             setAccountData({...accountData, parentFirst: ""});
@@ -187,7 +200,9 @@ const Player = () => {
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
             setAccountData({...accountData, agreeBtn: ""});
-            alert("Successfully Register User");
+            
+            dispatch(playersignup(accountData, history));
+            
         }
     };
 
@@ -560,7 +575,7 @@ const Player = () => {
                     views={['year', 'month', 'day']}
                     value={accountData.dob}
                     onChange={(newDate) => {
-                        setAccountData({...accountData, dob: newDate})
+                        setAccountData({...accountData, dob: newDate });
                     }}
                     renderInput={(params) => <TextField {...params} />}
                     />
@@ -721,9 +736,9 @@ const Player = () => {
                     </label>
                     <select
                     type="select"
-                    onChange={(e) => setAccountData({...accountData, throw: e.target.value})}
+                    onChange={(e) => setAccountData({...accountData, pThrow: e.target.value})}
                     className={`form-control ${
-                        validate.validate && validate.validate.throw
+                        validate.validate && validate.validate.pThrow
                           ? "is-invalid "
                           : ""
                     }`}                 
@@ -736,13 +751,13 @@ const Player = () => {
                     </select>
                     <div
                         className={`invalid-feedback text-start ${
-                            validate.validate && validate.validate.throw
+                            validate.validate && validate.validate.pThrow
                             ? "d-block"
                             : "d-none"
                         }`}
                         >
-                        {validate.validate && validate.validate.throw
-                            ? validate.validate.throw[0]
+                        {validate.validate && validate.validate.pThrow
+                            ? validate.validate.pThrow[0]
                             : ""}
                     </div>
                 </div>  

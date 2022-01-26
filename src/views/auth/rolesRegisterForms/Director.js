@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import states from 'json/states';
 import Form from "utilities/Forms";
+import { directorsignup } from 'actions/auth';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+const initialState = {
+    active: false, role: "director", firstName: "", lastName: "", email: "", phoneNumber: "", companyName: "", taxId: "",
+    street: "", city: "", state: "", zipcode: "", checkingName: "", checkingNum: "", confirmCheckingNum: "",
+    routingNum: "", confirmRoutingNum: "",fieldComplexName: "", numOfFields: "", fieldComplexCity: "", fieldComplexState: "", password: "", passwordConfirm: "", agreeBtn: ""
+};
 
 const Director = () => {
-    const [accountData, setAccountData] = useState({
-        role: "director", firstName: "", lastName: "", email: "", phoneNumber: "", companyName: "", taxId: "",
-        street: "", city: "", state: "", zipcode: "", checkingName: "", checkingNum: "", confirmCheckingNum: "",
-        routingNum: "", confirmRoutingNum: "",fieldComplexName: "", numOfFields: "", fieldComplexCity: "", fieldComplexState: "", password: "", passwordConfirm: "", agreeBtn: ""
-    });
+    const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [checkingNumMatch, setCheckingNumMatch] = useState(true);
     const [routingNumMatch, setRoutingNumMatch] = useState(true);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const validateRegister = () => {
         let isValid = true;
@@ -145,8 +153,9 @@ const Director = () => {
 
     const register = (e) => {
         e.preventDefault();
-        console.log(accountData.state)
 
+        console.log(accountData);
+        
         const validate = validateRegister();
 
         if (validate) {
@@ -174,7 +183,8 @@ const Director = () => {
             setAccountData({...accountData, fieldComplexState: ""});
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
-            alert("Successfully Register User");
+
+            dispatch(directorsignup(accountData, history));
         }
     };
 

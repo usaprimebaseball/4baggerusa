@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import Form from "utilities/Forms";
+import { othersignup } from 'actions/auth';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
+const initialState = {
+    active: false, role: "other", userName: "", firstName: "", lastName: "", email: "", phoneNumber: "", password: "", passwordConfirm: "", agreeBtn: ""
+};
 
 const Other = () => {
-    const [accountData, setAccountData] = useState({
-        role: "other", userName: "", firstName: "", lastName: "", email: "", phoneNumber: "", password: "", passwordConfirm: "", agreeBtn: ""
-    });
+    const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
 
-    
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const validateRegister = () => {
         let isValid = true;
 
@@ -73,6 +79,8 @@ const Other = () => {
 
     const register = (e) => {
         e.preventDefault();
+        
+        console.log(accountData);
 
         const validate = validateRegister();
 
@@ -85,7 +93,8 @@ const Other = () => {
             setAccountData({...accountData, phoneNumber: ""});
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
-            alert("Successfully Register User");
+
+            dispatch(othersignup(accountData, history));
         }
     };
 
