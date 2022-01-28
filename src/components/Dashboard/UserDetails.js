@@ -3,9 +3,8 @@ import CardSettings from "components/Cards/CardSettings.js";
 import CardProfile from "components/Cards/CardProfile.js";
 // components
 
-import CardStats from "components/Cards/CardStats.js";
 
-export default function HeaderStats() {
+export default function UserDetails() {
   return (
     <>
       {/* Header */}

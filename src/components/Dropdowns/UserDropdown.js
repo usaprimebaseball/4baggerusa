@@ -76,7 +76,7 @@ const UserDropdown = () => {
         }
       >
         <Link
-          to="/admin/settings"
+          to={`/account/`}
           className="text-info hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
           
         >

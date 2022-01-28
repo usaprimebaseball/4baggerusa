@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Avatar } from '@material-ui/core';
+import useStyles from './../Navbars/styles';
 
+import decode from 'jwt-decode';
 // components
 
 export default function CardProfile() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const location = useLocation();
+  const [userInfo, setUserInfo] = useState("");
+  const classes = useStyles();
+
+  useEffect(() => {
+    const token = user?.token;
+
+    if (token) {
+    const decodedToken = decode(token);
+
+    if (decodedToken.exp * 1000 < new Date().getTime());
+    }
+
+    setUser(JSON.parse(localStorage.getItem('profile')));
+    setUserInfo(user.result)
+}, [location]);
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
@@ -10,70 +32,29 @@ export default function CardProfile() {
           <div className="flex flex-wrap justify-center">
             <div className="w-full px-4 flex justify-center">
               <div className="relative">
-                <img
-                  alt="..."
-                  src={require("assets/img/team-2-800x800.jpg").default}
-                  className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                />
+              {!userInfo.profileImage ?
+              <Avatar className="mt-2 bg-danger font-bold" style={{borderRadius: "50%", height:"120px", width:"120px"}}>{user?.result.firstName.charAt(0)} {user?.result.lastName.charAt(0) }</Avatar>
+              :
+              <img
+              alt="..."
+              style={{height:"200px", width: "160px"}}
+              src={userInfo.profileImage}
+              className="shadow-xl rounded align-middle border-none -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+            />
+              }
               </div>
             </div>
-            <div className="w-full px-4 text-center mt-20">
+            <div className="w-full px-4 text-center mt-5">
               <div className="flex justify-center py-4 lg:pt-4 pt-8">
-                <div className="mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    22
-                  </span>
-                  <span className="text-sm text-blueGray-400">Friends</span>
-                </div>
-                <div className="mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    10
-                  </span>
-                  <span className="text-sm text-blueGray-400">Photos</span>
-                </div>
-                <div className="lg:mr-4 p-3 text-center">
-                  <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    89
-                  </span>
-                  <span className="text-sm text-blueGray-400">Comments</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="text-center mt-12">
-            <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-              Jenna Stones
-            </h3>
-            <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-              <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-              Los Angeles, California
-            </div>
-            <div className="mb-2 text-blueGray-600 mt-10">
-              <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-              Solution Manager - Creative Tim Officer
-            </div>
-            <div className="mb-2 text-blueGray-600">
-              <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-              University of Computer Science
-            </div>
-          </div>
-          <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
-            <div className="flex flex-wrap justify-center">
-              <div className="w-full lg:w-9/12 px-4">
-                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  An artist of considerable range, Jenna the name taken by
-                  Melbourne-raised, Brooklyn-based Nick Murphy writes, performs
-                  and records all of his own music, giving it a warm, intimate
-                  feel with a solid groove structure. An artist of considerable
-                  range.
-                </p>
-                <a
-                  href="#pablo"
-                  className="font-normal text-lightBlue-500"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Show more
-                </a>
+                  <div className="relative text-center">
+                    <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                      {userInfo.firstName} {userInfo.lastName}
+                    </h3>
+                    <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                      
+                      {userInfo.city && userInfo.state ? <div><i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i> {userInfo.city}, {userInfo.state}</div>: ""}
+                    </div>
+                  </div>
               </div>
             </div>
           </div>

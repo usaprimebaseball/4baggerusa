@@ -10,7 +10,6 @@ import Form from "utilities/Forms";
 import { playersignup } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { format } from 'date-fns';
 
 const initialState = {
     active: false, role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
@@ -244,16 +243,16 @@ const Player = () => {
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 />
                 <div
-                    className={`invalid-feedback text-start ${
-                        validate.validate && validate.validate.profileImage
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                    >
-                    {validate.validate && validate.validate.profileImage
-                        ? validate.validate.profileImage[0]
-                        : ""}
-                    </div>
+                className={`invalid-feedback text-start ${
+                    validate.validate && validate.validate.profileImage
+                    ? "d-block"
+                    : "d-none"
+                }`}
+                >
+                {validate.validate && validate.validate.profileImage
+                    ? validate.validate.profileImage[0]
+                    : ""}
+                </div>
             </div>
                     
             <div className='row'>
