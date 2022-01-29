@@ -4,7 +4,6 @@ const userReducer = (state = { authData: null }, action) => {
   switch (action.type) {
     case actionType.UPDATE:
       localStorage.setItem('profile', JSON.stringify({ ...action?.payload }));
-      console.log(action)
       return { ...state, authData: action.payload, loading: false, errors: null };
     default:
       return state;

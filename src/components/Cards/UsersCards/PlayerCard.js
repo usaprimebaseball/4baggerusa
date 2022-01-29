@@ -26,6 +26,8 @@ const PlayerCard = () => {
     const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
     const [id, setId] = useState({});
+    const [isUpdated, setIsUpdated] = useState({});
+
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const location = useLocation();
 
@@ -177,6 +179,7 @@ const PlayerCard = () => {
             setAccountData({...accountData, parentEmail: ""});
             setAccountData({...accountData, parentPhone: ""});
             dispatch(updateplayer(id, accountData));
+            setIsUpdated(true);
         }
     };
 
@@ -889,6 +892,10 @@ const PlayerCard = () => {
                     </div>
                 </div>
             <hr/>
+            {isUpdated?
+            <div class="alert alert-success" role="alert">
+                Updated Successfully!
+            </div>:""}
             <button
             className="mt-10 col-12 btn-lg btn-success"
             type="button"

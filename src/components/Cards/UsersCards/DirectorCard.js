@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
 import states from 'json/states';
 import decode from 'jwt-decode';
-
+import { updatedirector } from 'actions/user';
 // components
 
 const initialState = {
@@ -16,10 +17,11 @@ const initialState = {
 const DirectorCard = () => {
     const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
+    const [id, setId] = useState({});
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const location = useLocation();
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const history = useHistory();
 
     const validateRegister = () => {
@@ -139,7 +141,7 @@ const DirectorCard = () => {
             setAccountData({...accountData, numOfFields: ""});
             setAccountData({...accountData, fieldComplexCity: ""});
             setAccountData({...accountData, fieldComplexState: ""});
-            // dispatch(teamsignup(accountData, history));
+            dispatch(updatedirector(id, accountData));
         }
     };
 
@@ -154,7 +156,9 @@ const DirectorCard = () => {
 
         setUser(JSON.parse(localStorage.getItem('profile')));
         setAccountData(user.result)
+        setId(user.result._id)
     }, [location]);
+
 
     return (
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">

@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
-import states from 'json/states';
 import decode from 'jwt-decode';
+import { updateuser } from 'actions/user';
+import { useDispatch } from 'react-redux';
 // components
   
 const initialState = {
@@ -12,12 +13,13 @@ const initialState = {
 
 
 const OtherCard = () => {
-    const [accountData, setAccountData] = useState(initialState);
-    const [validate, setValidate] = useState({});
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    const location = useLocation();
+  const [accountData, setAccountData] = useState(initialState);
+  const [validate, setValidate] = useState({});
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const location = useLocation();
+  const [id, setId] = useState({});
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const history = useHistory();
 
     const validateRegister = () => {
@@ -76,7 +78,7 @@ const OtherCard = () => {
             setAccountData({...accountData, lastName: ""});
             setAccountData({...accountData, email: ""});
             setAccountData({...accountData, phoneNumber: ""});
-            // dispatch(teamsignup(accountData, history));
+            dispatch(updateuser(id, accountData));
         }
     };
 
@@ -91,7 +93,7 @@ const OtherCard = () => {
 
         setUser(JSON.parse(localStorage.getItem('profile')));
         setAccountData(user.result)
-
+        setId(user.result._id)
     }, [location]);
 
     return (

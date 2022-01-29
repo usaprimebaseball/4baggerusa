@@ -18,6 +18,7 @@ const TeamCard = () => {
     const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [isUpdated, setIsUpdated] = useState(false);
     const location = useLocation();
     const [id, setId] = useState({});
 
@@ -106,6 +107,7 @@ const TeamCard = () => {
             setAccountData({...accountData, ageGroup: ""});
             setAccountData({...accountData, division: ""});
             dispatch(updateteam(id, accountData));
+            setIsUpdated(true);
         }
     };
 
@@ -437,6 +439,10 @@ const TeamCard = () => {
             >
               Save Updates
             </button>
+            {isUpdated?
+              <div class="alert alert-success" role="alert">
+                  Updated Successfully!
+              </div>:""}
             </div>
           </form>
         </div>

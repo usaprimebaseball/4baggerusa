@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { createPopper } from "@popperjs/core";
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 
 import decode from 'jwt-decode';
 
@@ -76,7 +75,7 @@ const UserDropdown = () => {
         }
       >
         <Link
-          to={`/account/`}
+          to={`/account/${user?.result._id}`}
           className="text-info hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
           
         >
