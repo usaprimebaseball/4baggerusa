@@ -19,8 +19,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
 
 
       dispatch({ type: UPDATE, payload: data });
-      window.scroll(0,0);
-      setInterval(window.location.reload(), 5000);
+      setInterval(window.location.reload(), 2000);
     } catch (error) {
       console.log(error.message);
     }
