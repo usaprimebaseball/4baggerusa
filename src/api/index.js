@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://git.heroku.com/fourbagger.git' });
+const API = axios.create({ baseURL: 'https://fourbaggerserver.herokuapp.com' });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
