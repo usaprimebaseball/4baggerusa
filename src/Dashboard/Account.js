@@ -6,7 +6,7 @@ import decode from 'jwt-decode';
 
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import UserDetails from "components/Dashboard/UserDetails.js";
+import UserDetails from "Dashboard/UserDetails.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 import Auth from 'layouts/Auth';
 

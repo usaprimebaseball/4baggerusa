@@ -5,15 +5,15 @@ import "assets/styles/tailwind.css";
 
 // layouts
 
-import Account from "components/Dashboard/Account";
-import Auth from "layouts/Auth.js";
+import Account from "Dashboard/Account";
+import Auth from "layouts/Auth";
 
 // views without layouts
 
-import AboutUs from "views/AboutUs.js";
-import ContactUs from "views/ContactUs.js";
+import AboutUs from "views/AboutUs";
+import ContactUs from "views/ContactUs";
 import Rules from "views/Rules";
-import Index from "views/Index.js";
+import Index from "views/Index";
 
 const App = () => {
     return (

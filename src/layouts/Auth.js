@@ -4,7 +4,7 @@ import decode from 'jwt-decode';
 import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
-import Account from "components/Dashboard/Account";
+import Account from "Dashboard/Account";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import FooterSmall from "components/Footers/FooterSmall.js";
 
