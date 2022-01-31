@@ -4,6 +4,7 @@ import Director from "./rolesRegisterForms/Director";
 import Player from "./rolesRegisterForms/Player";
 import Team from "./rolesRegisterForms/Team";
 import { Link } from "react-router-dom";
+import Admin from "./rolesRegisterForms/Admin";
 
 export default function Register() {
 
@@ -56,6 +57,7 @@ export default function Register() {
                         <option value="team">Team</option>
                         <option value="player">Player</option>
                         <option value="other">Other</option>
+                        <option value="admin">Admin</option>
                       </select>
                     </div><hr/><br/>
                     {/* Determine what the role is */}
@@ -65,7 +67,8 @@ export default function Register() {
                     <Team />:
                     roleValue === "player"?
                       <Player />: roleValue === "other"?
-                      <Other />:""
+                      <Other />:roleValue === "admin" ?
+                      <Admin />: ""
                     }
                     <div className="text-center mt-6">
                         <Link

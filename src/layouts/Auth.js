@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import decode from 'jwt-decode';
-import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
 import Account from "Dashboard/Account";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation, useHistory } from "react-router-dom";
 import decode from 'jwt-decode';
 
 // components
@@ -8,7 +8,8 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import UserDetails from "Dashboard/UserDetails.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
-import Auth from 'layouts/Auth';
+import AdminSidebar from 'components/Sidebar/AdminSidebar';
+import AdminAction from 'components/Cards/userActionsCards/AdminAction';
 
 // views
 
@@ -38,12 +39,16 @@ export default function Account() {
     !user?routing(`/auth/login`):
     
     <>
-    <Sidebar />
+      {user?.result.role === 'admin' ? <AdminSidebar />:<Sidebar />}
       <div className="relative md:ml-64 bg-blueGray-100">
         <AdminNavbar />
         {/* Header */}
-        <UserDetails />
-        <FooterAdmin />
+        <Switch>
+          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result.teamName? user.result.teamName:user.result.firstName + user.result.lastName}/users`} component={AdminAction} />
+          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result.teamName? user.result.teamName:user.result.firstName + user.result.lastName}`} component={UserDetails} />
+        
+        </Switch>
+      <FooterAdmin />
       </div>
       </>
       }

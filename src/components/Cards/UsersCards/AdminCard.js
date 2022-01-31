@@ -3,16 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
 import decode from 'jwt-decode';
-import { updateuser } from 'actions/user';
+import { updateadmin } from 'actions/user';
 import { useDispatch } from 'react-redux';
 // components
   
 const initialState = {
-    active: false, role: "other", userName: "", firstName: "", lastName: "", email: "", phoneNumber: ""
+    role: "admin", firstName: "", lastName: "", email: "", phoneNumber: ""
 };
 
 
-const OtherCard = () => {
+const AdminCard = () => {
   const [accountData, setAccountData] = useState(initialState);
   const [validate, setValidate] = useState({});
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -27,10 +27,6 @@ const OtherCard = () => {
         let isValid = true;
 
         let validator = Form.validator({
-            userName: {
-                value: accountData.userName,
-                isRequired: true,
-            },
             firstName: {
                 value: accountData.firstName,
                 isRequired: true,
@@ -74,12 +70,11 @@ const OtherCard = () => {
 
         if (validate) {
             setValidate({});
-            setAccountData({...accountData, userName: ""});
             setAccountData({...accountData, firstName: ""});
             setAccountData({...accountData, lastName: ""});
             setAccountData({...accountData, email: ""});
             setAccountData({...accountData, phoneNumber: ""});
-            dispatch(updateuser(id, accountData));
+            dispatch(updateadmin(id, accountData));
             setIsUpdated(true);
             window.scroll(0,0);
         }
@@ -110,33 +105,6 @@ const OtherCard = () => {
               Account Information
             </h6>
             <div className="flex flex-wrap">
-            <div className="w-full lg:w-6/12 px-4">
-                <div className="relative w-full mb-3">
-                    <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                    >
-                    User Name
-                    </label>
-                    <input
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue={user.result.userName}
-                    onChange={(e) => setAccountData({...accountData, userName: e.target.value})}                    
-                    />
-                    <div
-                    className={`invalid-feedback text-start ${
-                        validate.validate && validate.validate.userName
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                    >
-                    {validate.validate && validate.validate.userName
-                        ? validate.validate.userName[0]
-                        : ""}
-                    </div>
-                </div>
-              </div>
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
@@ -259,4 +227,4 @@ const OtherCard = () => {
     )
 }
 
-export default OtherCard;
+export default AdminCard;

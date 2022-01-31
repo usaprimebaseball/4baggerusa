@@ -6,8 +6,7 @@ export const signin = (formData, router) => async (dispatch) => {
     const { data } = await api.signIn(formData);
 
     dispatch({ type: AUTH, data });
-
-    router.push(`/account/${data._id}`);
+    router.push(`/account/${data.result.role === 'other' ? 'user':data.result.role}/${data.result.teamName? data.result.teamName:data.result.firstName + data.result.lastName}`);
     window.scroll(0,0);
   } catch (error) {
     alert(error);
@@ -20,7 +19,7 @@ export const directorsignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
+    router.push(`/account/director/${data.result.firstName}${data.result.lastName}`);
     window.scroll(0,0);
   } catch (error) {
     console.log(error)
@@ -35,7 +34,7 @@ export const playersignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
+    router.push(`/account/player/${data.result.firstName}${data.result.lastName}`);
     window.scroll(0,0);
   } catch (error) {
     alert(error);
@@ -48,7 +47,7 @@ export const teamsignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
+    router.push(`/account/team/${data.result.teamName}`);
     window.scroll(0,0);
   } catch (error) {
     console.log(error)
@@ -61,10 +60,24 @@ export const othersignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
+    router.push(`/account/user/${data.result.firstName}${data.result.lastName}`);
     window.scroll(0,0);
   } catch (error) {
     console.log(error.message)
   }
 };
+
+export const adminsignup = (formData, router) => async (dispatch) => {
+  try {
+    const { data } = await api.adminSignUp(formData);
+
+    dispatch({ type: AUTH, data });
+
+    router.push(`/account/admin/${data.result.firstName}${data.result.lastName}`);
+    window.scroll(0,0);
+  } catch (error) {
+    console.log(error.message)
+  }
+};
+
 

@@ -7,7 +7,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
       const { data } = await api.updateDirector(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 2000);
+      setTimeout(window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -19,7 +19,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
 
 
       dispatch({ type: UPDATE, payload: data });
-      setInterval(window.location.reload(), 2000);
+      setTimeout(window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -29,7 +29,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
       const { data } = await api.updatePlayer(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 2000);
+      setTimeout(window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -39,7 +39,18 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
       const { data } = await api.updateOther(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 2000);
+      setTimeout(window.location.reload(), 4000);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  export const updateadmin = (id, userInfo) => async (dispatch) => {
+    try {
+      const { data } = await api.updateAdmin(id, userInfo);
+
+      dispatch({ type: UPDATE, payload: data });
+      setTimeout(window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }

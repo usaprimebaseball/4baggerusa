@@ -5,6 +5,7 @@ import TeamCard from "../Cards/UsersCards/TeamCard";
 import PlayerCard from './UsersCards/PlayerCard';
 import DirectorCard from './UsersCards/DirectorCard';
 import OtherCard from './UsersCards/OtherCard';
+import AdminCard from './UsersCards/AdminCard';
 // components
 
 export default function CardSettings() {
@@ -39,7 +40,8 @@ export default function CardSettings() {
           userRole === "player" ? <PlayerCard />: 
           userRole === "director" ? <DirectorCard />: 
           userRole === "director" ? <DirectorCard />:
-          userRole === "other" ? <OtherCard />:""}
+          userRole === "other" ? <OtherCard />:
+          userRole === "admin" ? <AdminCard />:""}
       </div>
     </>
   );
