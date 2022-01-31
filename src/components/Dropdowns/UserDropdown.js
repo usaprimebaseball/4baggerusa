@@ -75,7 +75,7 @@ const UserDropdown = () => {
         }
       >
         <Link
-          to="account"
+          to={`/account/${user?.result._id}`}
           className="text-info hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
           
         >
