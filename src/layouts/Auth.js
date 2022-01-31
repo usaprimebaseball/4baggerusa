@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { BrowserRouter, useLocation, Switch, Route, Redirect } from 'react-router-dom';
 import decode from 'jwt-decode';
-import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
 import Account from "Dashboard/Account";
@@ -34,6 +33,7 @@ export default function Auth() {
   return (
     <>
     {!user?
+    
     <>
     <Navbar transparent />
     <main>
@@ -45,11 +45,13 @@ export default function Auth() {
               "url(" + require("assets/img/signup_bg_2.png").default + ")",
           }}
         ></div>
-        <Switch>
-          <Route path="/auth/login" exact component={Login} />
-          <Route path="/auth/signup" exact component={Register} />
-          <Redirect from="/auth" to="/auth/login" />
-        </Switch>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/auth/login" exact component={Login} />
+            <Route path="/auth/signup" exact component={Register} />
+            <Redirect from="/auth" to="/auth/login" />
+          </Switch>
+        </BrowserRouter>
         <FooterSmall absolute />
       </section>
     </main></>:
