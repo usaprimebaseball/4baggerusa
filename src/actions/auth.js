@@ -8,6 +8,7 @@ export const signin = (formData, router) => async (dispatch) => {
     dispatch({ type: AUTH, data });
 
     router.push(`/account`);
+    window.scroll(0,0);
   } catch (error) {
     alert(error);
   }
@@ -19,8 +20,8 @@ export const directorsignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
-    
+    router.push(`/account`);    
+    window.scroll(0,0);
   } catch (error) {
     console.log(error)
   }
@@ -34,8 +35,8 @@ export const playersignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
-    
+    router.push(`/account`);    
+    window.scroll(0,0);
   } catch (error) {
     alert(error);
   }
@@ -47,8 +48,8 @@ export const teamsignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
-    
+    router.push(`/account`);
+    window.scroll(0,0);
   } catch (error) {
     console.log(error)
   }
@@ -60,8 +61,8 @@ export const othersignup = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data._id}`);
-    
+    router.push(`/account`);
+    window.scroll(0,0);
   } catch (error) {
     console.log(error.message)
   }

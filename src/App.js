@@ -9,7 +9,8 @@ import Account from "Dashboard/Account";
 import Auth from "layouts/Auth";
 
 // views without layouts
-
+import Login from "views/auth/Login.js";
+import Register from "views/auth/Register.js";
 import AboutUs from "views/AboutUs";
 import ContactUs from "views/ContactUs";
 import Rules from "views/Rules";
@@ -21,8 +22,9 @@ const App = () => {
             <Switch>
                 {/* add routes with layouts */}
                 <Route path="/account" component={Account} />
-                <Route path="/account/:id" component={Account} />
                 <Route path="/auth" component={Auth} />
+                <Route path="/auth/login" exact component={Login} />
+                <Route path="/auth/signup" exact component={Register} />
                 {/* add routes without layouts */}
                 <Route path="/aboutus" component={AboutUs} />
                 <Route path="/contactus" component={ContactUs} />
