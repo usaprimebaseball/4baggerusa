@@ -79,6 +79,7 @@ const OtherCard = () => {
             setAccountData({...accountData, email: ""});
             setAccountData({...accountData, phoneNumber: ""});
             dispatch(updateuser(id, accountData));
+            window.scroll(0,0);
         }
     };
 

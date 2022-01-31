@@ -179,6 +179,7 @@ const PlayerCard = () => {
             setAccountData({...accountData, parentEmail: ""});
             setAccountData({...accountData, parentPhone: ""});
             dispatch(updateplayer(id, accountData));
+            window.scroll(0,0);
             setIsUpdated(true);
         }
     };

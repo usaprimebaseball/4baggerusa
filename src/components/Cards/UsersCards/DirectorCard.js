@@ -142,6 +142,8 @@ const DirectorCard = () => {
             setAccountData({...accountData, fieldComplexCity: ""});
             setAccountData({...accountData, fieldComplexState: ""});
             dispatch(updatedirector(id, accountData));
+            window.scroll(0,0);
+
         }
     };
 
