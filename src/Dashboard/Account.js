@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import decode from 'jwt-decode';
 
 // components
@@ -8,6 +8,7 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import UserDetails from "Dashboard/UserDetails.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
+import Auth from 'layouts/Auth';
 
 // views
 
@@ -44,13 +45,6 @@ export default function Account() {
         <UserDetails />
         <FooterAdmin />
       </div>
-      <BrowserRouter>
-            <Switch>
-                {/* add routes with layouts */}
-                <Route path="/account/" component={Account} />
-                <Route path={`/account/${user?.result._id}`} component={Account} />
-            </Switch>
-        </BrowserRouter>
       </>
       }
     </>

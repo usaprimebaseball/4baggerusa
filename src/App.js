@@ -21,6 +21,7 @@ const App = () => {
             <Switch>
                 {/* add routes with layouts */}
                 <Route path="/account" component={Account} />
+                <Route path="/account/:id" component={Account} />
                 <Route path="/auth" component={Auth} />
                 {/* add routes without layouts */}
                 <Route path="/aboutus" component={AboutUs} />
