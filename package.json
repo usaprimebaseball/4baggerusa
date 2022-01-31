@@ -4,7 +4,7 @@
   "description": "",
   "license": "MIT",
   "proxy": "https://fourbaggerserver.herokuapp.com/",
-  "homepage": ".",
+  "homepage": "https://compassionate-pare-424f29.netlify.app/",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
