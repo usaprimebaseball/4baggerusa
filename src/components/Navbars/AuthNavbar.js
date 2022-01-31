@@ -26,7 +26,7 @@ export default function Navbar(props) {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              to="/4baggerusa"
+              to="/"
               className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
             >
               <img src={Logo} style={{height:'85px'}}/>
@@ -50,7 +50,7 @@ export default function Navbar(props) {
               <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold"
-                  href="/4baggerusa"
+                  href="/"
                 >
                   Home
                 </a>

@@ -60,7 +60,7 @@ const UserDropdown = () => {
         <div className="items-center flex">
           <a
             className="btn btn-success text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold"
-            href="/4baggerusa"
+            href="/"
           >
             <i class="fas fa-user-circle"></i>&nbsp;
             Account

@@ -197,6 +197,11 @@ const PlayerCard = () => {
     return (
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
+          {isUpdated?
+            <div class="alert mt-1 uppercase alert-success" role="alert">
+                <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
+            </div>:""
+            }
           <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Upload Your Image
             </h6>
@@ -893,10 +898,6 @@ const PlayerCard = () => {
                     </div>
                 </div>
             <hr/>
-            {isUpdated?
-            <div class="alert alert-success" role="alert">
-                Updated Successfully!
-            </div>:""}
             <button
             className="mt-10 col-12 btn-lg btn-success"
             type="button"
