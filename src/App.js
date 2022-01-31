@@ -23,8 +23,8 @@ const App = () => {
                 {/* add routes with layouts */}
                 <Route path="/account" component={Account} />
                 <Route path="/auth" component={Auth} />
-                <Route path="/auth/login" exact component={Login} />
-                <Route path="/auth/signup" exact component={Register} />
+                <Route path="/auth/login" component={Login} />
+                <Route path="/auth/signup" component={Register} />
                 {/* add routes without layouts */}
                 <Route path="/aboutus" component={AboutUs} />
                 <Route path="/contactus" component={ContactUs} />
