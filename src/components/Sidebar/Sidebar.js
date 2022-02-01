@@ -12,7 +12,7 @@ export default function Sidebar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const location = useLocation();
   const [collapseShow, setCollapseShow] = React.useState("hidden");
-
+  
   useEffect(() => {
     const token = user?.token;
 
@@ -110,7 +110,7 @@ export default function Sidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.firstName}${user.result.lastName}`}
+                  to={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}`}
                 >
                   <i
                     className={

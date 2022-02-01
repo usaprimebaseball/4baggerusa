@@ -4,6 +4,7 @@ import Form from "utilities/Forms";
 import { signin } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { adminsignin } from "actions/auth";
 
 const initialState = { email: "", password: "" }
 
@@ -12,7 +13,7 @@ export default function Login() {
   const [accountData, setAccountData] = useState(initialState);
   const [validate, setValidate] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-
+  const [admin, setAdmin] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -52,9 +53,21 @@ export default function Login() {
           setAccountData({...accountData, email: ""});
           setAccountData({...accountData, password: ""});
 
-          dispatch(signin(accountData, history));
+          if (admin) {
+            dispatch(adminsignin(accountData, history));
+          } else {
+            dispatch(signin(accountData, history));
+          }
       }
   };
+
+  const toggleAdmin = () => {
+    if (admin) {
+      setAdmin(false);
+    } else {
+      setAdmin(true);
+    }
+  }
 
   const togglePassword = (e) => {
       if (showPassword) {
@@ -77,6 +90,27 @@ export default function Login() {
                   <h6 className="text-success text-sm font-bold">
                     Welcome Back!
                   </h6>
+                  <div className="text-center mt-6">
+                    {admin ?
+                    <button
+                    className="btn-info text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={toggleAdmin}
+                  >
+                    Not Admin ?<br/>
+                    Click here to sign in.
+                  </button>:
+                  <button
+                  className="btn-danger text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={toggleAdmin}
+                >
+                  Admin ?<br/>
+                  Click here to sign in.
+                </button>
+                    }
+
+                  </div>
                 </div>
                 
               </div>

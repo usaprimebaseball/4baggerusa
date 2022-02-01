@@ -29,7 +29,6 @@ export default function Account() {
 
     if (decodedToken.exp * 1000 < new Date().getTime());
     }
-
     setUser(JSON.parse(localStorage.getItem('profile')));
 }, [location]);
 
@@ -44,8 +43,8 @@ export default function Account() {
         <AdminNavbar />
         {/* Header */}
         <Switch>
-          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result.teamName? user.result.teamName:user.result.firstName + user.result.lastName}/users`} component={AdminAction} />
-          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result.teamName? user.result.teamName:user.result.firstName + user.result.lastName}`} component={UserDetails} />
+          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/users`} component={AdminAction} />
+          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}`} component={UserDetails} />
         
         </Switch>
       <FooterAdmin />

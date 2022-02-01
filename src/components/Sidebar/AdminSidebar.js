@@ -110,7 +110,7 @@ export default function AdminSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.role}/${user.result.firstName}${user.result.lastName}`}
+                  to={`/account/${user.result.role}/${user.result._id}`}
                 >
                   <i
                     className={
@@ -132,7 +132,7 @@ export default function AdminSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result.teamName? user.result.teamName:user.result.firstName + user.result.lastName}/users`}
+                  to={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/users`}
                 >
                   <i
                     className={

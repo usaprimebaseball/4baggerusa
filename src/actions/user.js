@@ -1,13 +1,34 @@
-import { UPDATE } from '../constants/actionTypes';
+import { UPDATE, FETCH_ALL, FETCH_ONE } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
-// Update info
-export const updatedirector = (id, userInfo) => async (dispatch) => {
+// Get users
+export const getusers = () => async (dispatch) => {
+  try {
+    const { data } = await api.getUsers();
+
+    dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getuser = (id) => async (dispatch) => {
+    try {
+      const { data } = await api.getUser(id);
+
+      dispatch({ type: FETCH_ONE, payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // Update Info
+  export const updatedirector = (id, userInfo) => async (dispatch) => {
     try {
       const { data } = await api.updateDirector(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 4000);
+      setTimeout(await window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -19,7 +40,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
 
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 4000);
+      setTimeout(await window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -29,7 +50,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
       const { data } = await api.updatePlayer(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 4000);
+      setTimeout(await window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -39,7 +60,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
       const { data } = await api.updateOther(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 4000);
+      setTimeout(await window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -50,7 +71,7 @@ export const updatedirector = (id, userInfo) => async (dispatch) => {
       const { data } = await api.updateAdmin(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(window.location.reload(), 4000);
+      setTimeout(await window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }

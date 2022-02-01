@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from 'react-router-dom';
+
+// import { updateuseractivity, updatedirectoractivity, updateplayeractivity, updateteamactivity } from 'actions/user';
+import { getusers } from "actions/user";
+
 import PropTypes from "prop-types";
 
 // components
-
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
-import { Button } from "@material-ui/core";
-
+const initialState = {
+  active: false
+};
 export default function CardTable({ color }) {
+  const [accountData, setAccountData] = useState(initialState);
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
+  const location = useLocation();
+  
+  const handleSubmit = (id, user) => {
+    setAccountData({...accountData, active:  false ? true : false });
+
+    // if ( user.role === "director" ){
+    //   dispatch(updatedirectoractivity(id, accountData));
+    // } else if ( user.role === "team" ) {
+    //   dispatch(updateteamactivity(id, accountData)); 
+    // } else if ( user.role === "player" ) {
+    //   dispatch(updateplayeractivity(id, accountData));
+    // } else if ( user.role === "other" ) {
+    //   dispatch(updateuseractivity(id, accountData));
+    // }
+  }
+
+  useEffect(() => {
+    dispatch(getusers());
+}, [location]);
+
   return (
     <>
       <div
@@ -76,37 +104,43 @@ export default function CardTable({ color }) {
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                  <img
-                    src={require("assets/img/bootstrap.jpg").default}
-                    className="h-12 w-12 bg-white rounded-full border"
-                    alt="..."
-                  ></img>{" "}
-                  <span
-                    className={
-                      "ml-3 font-bold " +
-                      +(color === "light" ? "text-blueGray-600" : "text-white")
-                    }
-                  >
-                    Argon Design System
-                  </span>
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  $2,500 USD
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <i className="fas fa-circle text-orange-500 mr-2"></i> pending
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  <Button>Activate</Button>
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                  <TableDropdown />
-                </td>
-              </tr>
-            </tbody>
+              {users ? users.map((user) => {
+                return <tbody key={user._id}>
+                <tr>
+                  <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                    <img
+                      src={user.profileImage? user.profileImage:""}
+                      className="h-12 w-12 bg-white rounded-full border"
+                      alt="..."
+                    ></img>{" "}
+                    <span
+                      className={
+                        "ml-3 font-bold " +
+                        +(color === "light" ? "text-blueGray-600" : "text-white")
+                      }
+                    >
+                      {user.firstName} {user.lastName}
+                    </span>
+                  </th>
+                  <td className="uppercase border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {user.role}
+                  </td>
+                  <td className="uppercase border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {user.active ? <i className="fas fa-circle text-green-500 mr-2"> Active</i> :<i className="fas fa-circle text-orange-500 mr-2"> Inactive</i>}
+                  </td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {user.active ? 
+                    <button onClick={() => handleSubmit(user._id, user)} className="btn btn-danger" variant="contained">
+                    Deactivate
+                  </button>:
+                  <button onClick={() => handleSubmit(user._id, user)} className="btn btn-success" variant="contained">
+                    Activate
+                  </button>
+                  }
+                  </td>   
+                </tr>
+              </tbody> 
+              }):""}
           </table>
         </div>
       </div>
@@ -121,3 +155,4 @@ CardTable.defaultProps = {
 CardTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };
+
