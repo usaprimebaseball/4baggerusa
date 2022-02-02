@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 // components
   
 const initialState = {
-    active: false, role: "other", userName: "", firstName: "", lastName: "", email: "", phoneNumber: ""
+    active: "", role: "other", userName: "", firstName: "", lastName: "", email: "", phoneNumber: ""
 };
 
 
@@ -79,6 +79,7 @@ const OtherCard = () => {
             setAccountData({...accountData, lastName: ""});
             setAccountData({...accountData, email: ""});
             setAccountData({...accountData, phoneNumber: ""});
+            setAccountData({...accountData, active: user.result.active});
             dispatch(updateuser(id, accountData));
             setIsUpdated(true);
             window.scroll(0,0);

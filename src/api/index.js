@@ -29,3 +29,5 @@ export const updatePlayer = (id, updatedUser) => API.patch(`/account/player/${id
 export const updateTeam = (id, updatedUser) => API.patch(`/account/team/${id}`, updatedUser);
 export const updateOther = (id, updatedUser) => API.patch(`/account/user/${id}`, updatedUser);
 export const updateAdmin = (id, updatedUser) => API.patch(`/account/admin/${id}`, updatedUser);
+
+export const updateActivity = (userRole, id, updatedUser) => API.patch(`/account/${userRole}/${id}/activity`, updatedUser);

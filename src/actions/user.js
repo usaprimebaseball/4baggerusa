@@ -1,4 +1,4 @@
-import { UPDATE, FETCH_ALL, FETCH_ONE } from '../constants/actionTypes';
+import { UPDATE, FETCH_ALL, FETCH_ONE, ACTIVITY } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 // Get users
@@ -40,7 +40,7 @@ export const getuser = (id) => async (dispatch) => {
 
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(await window.location.reload(), 4000);
+      // setTimeout(await window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);
     }
@@ -71,6 +71,16 @@ export const getuser = (id) => async (dispatch) => {
       const { data } = await api.updateAdmin(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
+      setTimeout(await window.location.reload(), 4000);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  export const updateactivity = (userRole, id, active) => async (dispatch) => {
+    try {
+      const { data } = await api.updateActivity(userRole, id, active);
+      dispatch({ type: ACTIVITY, payload: data });
       setTimeout(await window.location.reload(), 4000);
     } catch (error) {
       console.log(error.message);

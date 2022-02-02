@@ -9,7 +9,7 @@ import { updatedirector } from 'actions/user';
 // components
 
 const initialState = {
-    active: false, role: "director", firstName: "", lastName: "", email: "", phoneNumber: "", companyName: "", taxId: "",
+    active: "", role: "director", firstName: "", lastName: "", email: "", phoneNumber: "", companyName: "", taxId: "",
     street: "", city: "", state: "", zipcode: "", checkingName: "", checkingNum: "",
     routingNum: "", fieldComplexName: "", numOfFields: "", fieldComplexCity: "", fieldComplexState: ""
 };
@@ -142,6 +142,7 @@ const DirectorCard = () => {
             setAccountData({...accountData, numOfFields: ""});
             setAccountData({...accountData, fieldComplexCity: ""});
             setAccountData({...accountData, fieldComplexState: ""});
+            setAccountData({...accountData, active: user.result.active});
             dispatch(updatedirector(id, accountData));
             window.scroll(0,0);
             setIsUpdated(true);

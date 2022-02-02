@@ -6,8 +6,8 @@ const usersReducer = (users = [], action) => {
       return action.payload;
     case actionType.FETCH_ONE:
       return users.map((user) => (user._id === action.payload._id ? user : user));
-      // case actionType.ACTIVITY:
-      //   return users.map((user) => (user._id === action.payload._id ? user : user));
+      case actionType.ACTIVITY:
+        return users.map((user) => (user._id === action.payload._id ? action.payload : user));
     default:
       return users;
   }

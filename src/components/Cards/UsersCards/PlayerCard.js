@@ -16,7 +16,7 @@ import { updateplayer } from 'actions/user';
 // components
 
 const initialState = {
-    active: false, role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
+    active: "", role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
     street: "", city: "", state: "", zipcode: "", dob: new Date(), gradYear: "", collegeCommitment: "",
     height: "", weight: "",pThrow: "", bat: "", primPosition: "", seconPosition: "", parentFirst: "", parentLast: "", 
     parentEmail: "", parentPhone: ""
@@ -178,6 +178,7 @@ const PlayerCard = () => {
             setAccountData({...accountData, parentLast: ""});
             setAccountData({...accountData, parentEmail: ""});
             setAccountData({...accountData, parentPhone: ""});
+            setAccountData({...accountData, active: user.result.active});
             dispatch(updateplayer(id, accountData));
             window.scroll(0,0);
             setIsUpdated(true);

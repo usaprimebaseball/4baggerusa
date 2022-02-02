@@ -106,6 +106,7 @@ const TeamCard = () => {
             setAccountData({...accountData, state: ""});
             setAccountData({...accountData, ageGroup: ""});
             setAccountData({...accountData, division: ""});
+            setAccountData({...accountData, active: user.result.active});
             dispatch(updateteam(id, accountData));
             window.scroll(0,0);
             setIsUpdated(true);
