@@ -9,7 +9,7 @@ export const signin = (formData, router) => async (dispatch) => {
     router.push(`/account/${data.result.role === 'other' ? 'user':data.result.role}/${data.result._id}`);
     window.scroll(0,0);
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
@@ -21,7 +21,7 @@ export const adminsignin = (formData, router) => async (dispatch) => {
     router.push(`/account/admin/${data.result._id}`);
     window.scroll(0,0);
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
@@ -37,7 +37,6 @@ export const directorsignup = (formData, router) => async (dispatch) => {
     console.log(error)
   }
 };
-
 
 
 export const playersignup = (formData, router) => async (dispatch) => {

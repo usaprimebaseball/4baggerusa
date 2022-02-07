@@ -17,7 +17,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const validateRegister = () => {
+  const validateForm = () => {
       let isValid = true;
 
       let validator = Form.validator({
@@ -46,7 +46,7 @@ export default function Login() {
   const login = (e) => {
       e.preventDefault();
 
-      const validate = validateRegister();
+      const validate = validateForm();
 
       if (validate) {
           setValidate({});

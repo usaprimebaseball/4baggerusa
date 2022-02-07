@@ -5,11 +5,11 @@ import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import UserDetails from "Dashboard/UserDetails.js";
+import UserDetails from "dashboard/UserDetails";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
 import AdminSidebar from 'components/Sidebar/AdminSidebar';
-import AdminAction from 'components/Cards/userActionsCards/AdminAction';
-import DirectorAction from 'components/Cards/userActionsCards/DirectorAction';
+import UserActivity from 'components/Cards/userActionsCards/AdminActions/UserActivity';
+import CreateEvent from 'components/Cards/userActionsCards/DirectorActions/CreateEvent';
 
 import DirectorSidebar from 'components/Sidebar/DirectorSidebar';
 
@@ -39,8 +39,8 @@ export default function Account() {
         <AdminNavbar />
         {/* Header */}
         <Switch>
-          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/users`} component={AdminAction} />
-          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/createtournament`} component={DirectorAction} />
+          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/users`} component={UserActivity} />
+          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/createtournament`} component={CreateEvent} />
           <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}`} component={UserDetails} />
         
         </Switch>

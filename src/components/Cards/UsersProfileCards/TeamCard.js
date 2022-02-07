@@ -25,7 +25,7 @@ const TeamCard = () => {
     const dispatch = useDispatch();
     // const history = useHistory();
 
-    const validateRegister = () => {
+    const validateForm = () => {
         let isValid = true;
 
         let validator = Form.validator({
@@ -92,7 +92,7 @@ const TeamCard = () => {
         
         console.log(accountData);
 
-        const validate = validateRegister();
+        const validate = validateForm();
 
         if (validate) {
             setValidate({});
@@ -134,7 +134,7 @@ const TeamCard = () => {
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
           {isUpdated?
-              <div class="alert mt-1 uppercase alert-success" role="alert">
+              <div className="alert mt-1 uppercase alert-success" role="alert">
                   <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
               </div>:""}
           <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -174,7 +174,7 @@ const TeamCard = () => {
             <div className="w-full lg:w-12/12 px-4">
                 <div className="relative w-full mb-3">
                     <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                     >
                     Team Name
@@ -201,7 +201,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Head Coach Email Address
@@ -228,7 +228,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     Head Coach Phone Number
@@ -255,7 +255,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     Head Coach First Name
@@ -282,7 +282,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     Head Coach Last Name
@@ -309,7 +309,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     Age Group
@@ -351,7 +351,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                     <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                     >
                     Division
@@ -381,7 +381,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     City
@@ -410,7 +410,7 @@ const TeamCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     State

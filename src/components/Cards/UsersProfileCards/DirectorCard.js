@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
 import states from 'json/states';
-import decode from 'jwt-decode';
 import { updateuser } from 'actions/user';
 // components
 
@@ -25,7 +24,7 @@ const DirectorCard = () => {
     const dispatch = useDispatch();
     // const history = useHistory();
 
-    const validateRegister = () => {
+    const validateForm = () => {
         let isValid = true;
 
         let validator = Form.validator({
@@ -121,7 +120,7 @@ const DirectorCard = () => {
         
         console.log(accountData);
 
-        const validate = validateRegister();
+        const validate = validateForm();
 
         if (validate) {
             setValidate({});
@@ -151,14 +150,6 @@ const DirectorCard = () => {
     };
 
     useEffect(() => {
-        const token = user?.token;
-
-        if (token) {
-        const decodedToken = decode(token);
-
-        if (decodedToken.exp * 1000 < new Date().getTime());
-        }
-
         setUser(JSON.parse(localStorage.getItem('profile')));
         setAccountData(user.result)
         setId(user.result._id)
@@ -169,7 +160,7 @@ const DirectorCard = () => {
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
           {isUpdated?
-              <div class="alert mt-1 uppercase alert-success" role="alert">
+              <div className="alert mt-1 uppercase alert-success" role="alert">
                   <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
               </div>:""}
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -180,7 +171,7 @@ const DirectorCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     First Name
@@ -207,7 +198,7 @@ const DirectorCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                    Last Name
@@ -234,7 +225,7 @@ const DirectorCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Email Address
@@ -261,7 +252,7 @@ const DirectorCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Phone Number
@@ -288,7 +279,7 @@ const DirectorCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     Company Name
@@ -315,7 +306,7 @@ const DirectorCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     Tax ID
@@ -350,7 +341,7 @@ const DirectorCard = () => {
                 <div className="w-full col-12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Address
@@ -378,7 +369,7 @@ const DirectorCard = () => {
                 <div className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         City
@@ -407,7 +398,7 @@ const DirectorCard = () => {
                 <div className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         State
@@ -436,7 +427,7 @@ const DirectorCard = () => {
                 <div className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Zipcode
@@ -471,7 +462,7 @@ const DirectorCard = () => {
                 <div className="col-12">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Name on checking account
@@ -499,7 +490,7 @@ const DirectorCard = () => {
                 <div className="col-md-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         DDA/Checking account number
@@ -528,7 +519,7 @@ const DirectorCard = () => {
                 <div className="col-md-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Routing Number
@@ -556,7 +547,7 @@ const DirectorCard = () => {
                 <div className="col-md-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Name of field complex
@@ -584,7 +575,7 @@ const DirectorCard = () => {
                 <div className="col-md-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Number of fields 
@@ -619,7 +610,7 @@ const DirectorCard = () => {
             <div className="col-md-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         City
@@ -648,7 +639,7 @@ const DirectorCard = () => {
                 <div className="col-md-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         State

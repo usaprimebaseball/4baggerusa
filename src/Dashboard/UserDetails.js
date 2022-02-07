@@ -1,6 +1,6 @@
 import React from "react";
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
+import UserProfilePage from "views/UserProfilePage.js";
+import UserImageCard from "components/Cards/UserImageCard.js";
 // components
 
 
@@ -13,10 +13,10 @@ export default function UserDetails() {
           <div>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-8/12 px-4">
-                <CardSettings />
+                <UserProfilePage />
               </div>
               <div className="w-full lg:w-4/12 px-4">
-                <CardProfile />
+                <UserImageCard />
               </div>
             </div>
           </div>

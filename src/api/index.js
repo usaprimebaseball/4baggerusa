@@ -28,3 +28,8 @@ export const updateUser = (role, id, updatedUser) => API.patch(`/account/${role}
 export const updateAdmin = (id, updatedUser) => API.patch(`/account/admin/${id}`, updatedUser);
 
 export const updateActivity = (userRole, id, updatedUser) => API.patch(`/account/${userRole}/${id}`, updatedUser);
+
+export const createEvent = (formData) => API.post(`/events`, formData);
+export const getEvents = () => API.get(`/events`);
+
+

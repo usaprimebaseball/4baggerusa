@@ -15,7 +15,7 @@ const UserModal = (props) => {
             
         </ModalBody>
         <ModalFooter>
-            <button type="button" class="btn btn-secondary" show={false}>OK</button>
+            <button type="button" className="btn btn-secondary" show={false}>OK</button>
         </ModalFooter>
         </Modal>
     );

@@ -29,7 +29,7 @@ const Player = () => {
     const history = useHistory();
 
 
-    const validateRegister = () => {
+    const validateForm = () => {
         let isValid = true;
 
         let validator = Form.validator({
@@ -170,7 +170,7 @@ const Player = () => {
         
         console.log(accountData);
 
-        const validate = validateRegister();
+        const validate = validateForm();
 
         if (validate) {
             setValidate({});
@@ -555,31 +555,25 @@ const Player = () => {
                 </div>
             </div>
             <hr/><br/>
-
-            <span className="uppercase text-info font-bold">Date of Birth: <span style={{color:'red'}}>*</span></span><br/><br/>
-
-            <div className="relative w-full mb-3">
-                
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <Stack>
-                    <DatePicker
+            <div className="relative col-12 mb-3">
+                <label
+                    className="block uppercase text-white text-sm font-bold mb-2"
+                    htmlFor="grid-password"
+                >
+                    Date of Birth <span style={{color:'red'}}>*</span>
+                </label>
+                <input
+                type="date"
                     className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                         validate.validate && validate.validate.dob
                         ? "is-invalid "
                         : ""
                     }`}
-                    disableFuture
-                    label="Date Picker"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
                     value={accountData.dob}
-                    onChange={(newDate) => {
-                        setAccountData({...accountData, dob: newDate });
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                    />
-                </Stack>
-                </LocalizationProvider>
+                    placeholder="Last Name"
+                    onChange={(e) => setAccountData({...accountData, dob: e.target.value})}
+                />
+
                 <div
                 className={`invalid-feedback text-start ${
                     validate.validate && validate.validate.dob
@@ -1138,7 +1132,7 @@ const Player = () => {
             </label>
             {!accountData.agreeBtn ?
                 <div className='alert alert-warning font-bold'>
-                <i class="fas fa-exclamation-triangle"></i> YOU MUST AGREE WITH THE PRIVACY POLICY TO COMPLETE REGISTRATION!
+                <i className="fas fa-exclamation-triangle"></i> YOU MUST AGREE WITH THE PRIVACY POLICY TO COMPLETE REGISTRATION!
             </div>: ""}
             <div
                 className={`invalid-feedback text-start ${
@@ -1154,7 +1148,7 @@ const Player = () => {
         </div>
         {!passwordMatch ?
         <div className='alert alert-danger'>
-           <i class="fas fa-exclamation-triangle"></i> Password is not matching the confirmation!
+           <i className="fas fa-exclamation-triangle"></i> Password is not matching the confirmation!
         </div>: ""}
         <div className="text-center mt-6">
             <button

@@ -5,7 +5,7 @@ import "assets/styles/tailwind.css";
 
 // layouts
 
-import Account from "Dashboard/Account";
+import Account from "dashboard/Account";
 import Auth from "layouts/Auth";
 
 // views without layouts

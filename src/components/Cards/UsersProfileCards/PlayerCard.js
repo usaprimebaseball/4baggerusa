@@ -33,7 +33,7 @@ const PlayerCard = () => {
 
     const dispatch = useDispatch();
 
-    const validateRegister = () => {
+    const validateForm = () => {
         let isValid = true;
 
         let validator = Form.validator({
@@ -152,7 +152,7 @@ const PlayerCard = () => {
         
         console.log(accountData);
 
-        const validate = validateRegister();
+        const validate = validateForm();
 
         if (validate) {
             setValidate({});
@@ -206,7 +206,7 @@ const PlayerCard = () => {
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
           {isUpdated?
-              <div class="alert mt-1 uppercase alert-success" role="alert">
+              <div className="alert mt-1 uppercase alert-success" role="alert">
                   <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
               </div>:""}
           <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -247,7 +247,7 @@ const PlayerCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                     First Name
@@ -274,7 +274,7 @@ const PlayerCard = () => {
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                   >
                    Last Name
@@ -301,7 +301,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Email Address
@@ -328,7 +328,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Phone Number
@@ -355,7 +355,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     High School Name
@@ -380,46 +380,42 @@ const PlayerCard = () => {
                     </div>
                 </div>
                 <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
+                    <div className="relative  mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
-                    Date of Birth
+                        Date of Birth <span style={{color:'red'}}>*</span>
                     </label>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <Stack>
-                                <DatePicker
-                                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    disableFuture
-                                    label="Date Picker"
-                                    openTo="year"
-                                    views={['year', 'month', 'day']}
-                                    value={accountData.dob}
-                                    onChange={(newDate) => {
-                                        setAccountData({...accountData, dob: newDate });
-                                    }}
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
-                            </Stack>
-                        </LocalizationProvider>
-                    <div
-                        className={`invalid-feedback text-start ${
+                    <input
+                    type="date"
+                        className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                             validate.validate && validate.validate.dob
-                            ? "d-block"
-                            : "d-none"
+                            ? "is-invalid "
+                            : ""
                         }`}
-                        >
-                        {validate.validate && validate.validate.dob
-                            ? validate.validate.dob[0]
-                            : ""}
-                        </div>
+                        value={accountData.dob}
+                        placeholder="Last Name"
+                        onChange={(e) => setAccountData({...accountData, dob: e.target.value})}
+                    />
+
+                    <div
+                    className={`invalid-feedback text-start ${
+                        validate.validate && validate.validate.dob
+                        ? "d-block"
+                        : "d-none"
+                    }`}
+                    >
+                    {validate.validate && validate.validate.dob
+                        ? validate.validate.dob[0]
+                        : ""}
+                    </div>
                     </div>
                 </div>
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     Graduation Year
@@ -446,7 +442,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     collegeCommitment
@@ -473,7 +469,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     Player Height
@@ -500,7 +496,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     Weight
@@ -527,7 +523,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     Throw
@@ -559,7 +555,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                     <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
                     Bat
@@ -591,7 +587,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                             htmlFor="grid-password"
                         >
                         Primary Position
@@ -628,7 +624,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                             htmlFor="grid-password"
                         >
                         Secondary Position
@@ -673,7 +669,7 @@ const PlayerCard = () => {
                 <div className="w-full col-12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Address
@@ -701,7 +697,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         City
@@ -730,7 +726,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
                     <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                     htmlFor="grid-password"
                     >
                     State
@@ -759,7 +755,7 @@ const PlayerCard = () => {
                 <div className="w-full lg:w-4/12 px-4">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Zipcode
@@ -794,7 +790,7 @@ const PlayerCard = () => {
                 <div className="col-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Parent First
@@ -822,7 +818,7 @@ const PlayerCard = () => {
                 <div className="col-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Parent Last
@@ -851,7 +847,7 @@ const PlayerCard = () => {
                 <div className="col-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Parent Email
@@ -879,7 +875,7 @@ const PlayerCard = () => {
                 <div className="col-6">
                     <div className="relative w-full mb-3">
                         <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                        className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Parent Phone

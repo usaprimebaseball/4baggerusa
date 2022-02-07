@@ -27,7 +27,7 @@ const IndexDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-      <i class="fas fa-chevron-circle-down"></i>&nbsp;
+      <i className="fas fa-chevron-circle-down"></i>&nbsp;
        Events
       </a>
       <div

@@ -23,7 +23,7 @@ const Director = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const validateRegister = () => {
+    const validateForm = () => {
         let isValid = true;
 
         let validator = Form.validator({
@@ -156,7 +156,7 @@ const Director = () => {
 
         console.log(accountData);
         
-        const validate = validateRegister();
+        const validate = validateForm();
 
         if (validate) {
             setValidate({});
@@ -964,23 +964,23 @@ const Director = () => {
             </label>
             {!accountData.agreeBtn ?
                 <div className='alert alert-warning font-bold'>
-                <i class="fas fa-exclamation-triangle"></i> YOU MUST AGREE WITH THE PRIVACY POLICY TO COMPLETE REGISTRATION!
+                <i className="fas fa-exclamation-triangle"></i> YOU MUST AGREE WITH THE PRIVACY POLICY TO COMPLETE REGISTRATION!
             </div>: ""}
         </div>
 
         {!passwordMatch ?
         <div className='alert alert-danger'>
-            <i class="fas fa-exclamation-triangle"></i> Password is not matching the confirmation!
+            <i className="fas fa-exclamation-triangle"></i> Password is not matching the confirmation!
         </div>: ""}
 
         {!checkingNumMatch ? 
         <div className='alert alert-danger'>
-            <i class="fas fa-exclamation-triangle"></i> Checking Account Number is not matching it's confirmation!
+            <i className="fas fa-exclamation-triangle"></i> Checking Account Number is not matching it's confirmation!
         </div>:""}
 
         {!routingNumMatch ? 
         <div className='alert alert-danger'>
-           <i class="fas fa-exclamation-triangle"></i> Routing Number is not matching the confirmation!
+           <i className="fas fa-exclamation-triangle"></i> Routing Number is not matching the confirmation!
         </div>:""}
 
         <div className="text-center mt-6">

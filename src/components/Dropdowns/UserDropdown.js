@@ -62,7 +62,7 @@ const UserDropdown = () => {
             className="btn btn-success text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold"
             href="/"
           >
-            <i class="fas fa-user-circle"></i>&nbsp;
+            <i className="fas fa-user-circle"></i>&nbsp;
             Account
           </a>
         </div>
@@ -79,7 +79,7 @@ const UserDropdown = () => {
           className="text-info hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
           
         >
-          <i class="fas fa-tachometer-alt"></i>&nbsp;
+          <i className="fas fa-tachometer-alt"></i>&nbsp;
           Dashboard
         </Link>
         <Link
@@ -87,7 +87,7 @@ const UserDropdown = () => {
           className="text-info hover:text-blueGray-500 0 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
           onClick={logout}
         >
-          <i class="fas fa-sm fa-sign-out-alt"></i>&nbsp;
+          <i className="fas fa-sm fa-sign-out-alt"></i>&nbsp;
           Log Out
         </Link>
       </div>

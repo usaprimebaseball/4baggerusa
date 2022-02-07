@@ -3,7 +3,7 @@ import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import decode from 'jwt-decode';
 
 // components
-import Account from "Dashboard/Account";
+import Account from "dashboard/Account";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import FooterSmall from "components/Footers/FooterSmall.js";
 

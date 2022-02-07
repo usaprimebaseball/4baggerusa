@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 // components
 
-export default function CardProfile() {
+export default function UserImageCard() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const location = useLocation();
   const [userInfo, setUserInfo] = useState("");

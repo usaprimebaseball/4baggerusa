@@ -1,27 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import decode from 'jwt-decode';
-import TeamCard from "../Cards/UsersCards/TeamCard";
-import PlayerCard from './UsersCards/PlayerCard';
-import DirectorCard from './UsersCards/DirectorCard';
-import OtherCard from './UsersCards/OtherCard';
-import AdminCard from './UsersCards/AdminCard';
+import TeamCard from "../components/Cards/UsersProfileCards/TeamCard";
+import PlayerCard from '../components/Cards/UsersProfileCards/PlayerCard';
+import DirectorCard from '../components/Cards/UsersProfileCards/DirectorCard';
+import OtherCard from '../components/Cards/UsersProfileCards/OtherCard';
+import AdminCard from '../components/Cards/UsersProfileCards/AdminCard';
 // components
 
-export default function CardSettings() {
+export default function UserProfilePage() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const location = useLocation();
   const [userRole, setUserRole] = useState("");
   
 
   useEffect(() => {
-    const token = user?.token;
-
-    if (token) {
-    const decodedToken = decode(token);
-
-    if (decodedToken.exp * 1000 < new Date().getTime());
-    }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
     setUserRole(user.result.role)
