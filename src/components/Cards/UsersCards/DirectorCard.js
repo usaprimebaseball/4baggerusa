@@ -5,11 +5,11 @@ import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
 import states from 'json/states';
 import decode from 'jwt-decode';
-import { updatedirector } from 'actions/user';
+import { updateuser } from 'actions/user';
 // components
 
 const initialState = {
-    active: false, role: "director", firstName: "", lastName: "", email: "", phoneNumber: "", companyName: "", taxId: "",
+    active: "", role: "director", firstName: "", lastName: "", email: "", phoneNumber: "", companyName: "", taxId: "",
     street: "", city: "", state: "", zipcode: "", checkingName: "", checkingNum: "",
     routingNum: "", fieldComplexName: "", numOfFields: "", fieldComplexCity: "", fieldComplexState: ""
 };
@@ -20,6 +20,7 @@ const DirectorCard = () => {
     const [id, setId] = useState({});
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const location = useLocation();
+    const [isUpdated, setIsUpdated] = useState(false);
 
     const dispatch = useDispatch();
     // const history = useHistory();
@@ -141,7 +142,11 @@ const DirectorCard = () => {
             setAccountData({...accountData, numOfFields: ""});
             setAccountData({...accountData, fieldComplexCity: ""});
             setAccountData({...accountData, fieldComplexState: ""});
-            dispatch(updatedirector(id, accountData));
+            setAccountData({...accountData, active: user.result.active});
+            dispatch(updateuser(user.result.role, id, accountData));
+            window.scroll(0,0);
+            setIsUpdated(true);
+
         }
     };
 
@@ -163,6 +168,10 @@ const DirectorCard = () => {
     return (
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
+          {isUpdated?
+              <div class="alert mt-1 uppercase alert-success" role="alert">
+                  <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
+              </div>:""}
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Director Information
             </h6>

@@ -11,12 +11,12 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import Stack from '@mui/material/Stack';
-import { updateplayer } from 'actions/user';
+import { updateuser } from 'actions/user';
 
 // components
 
 const initialState = {
-    active: false, role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
+    active: "", role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
     street: "", city: "", state: "", zipcode: "", dob: new Date(), gradYear: "", collegeCommitment: "",
     height: "", weight: "",pThrow: "", bat: "", primPosition: "", seconPosition: "", parentFirst: "", parentLast: "", 
     parentEmail: "", parentPhone: ""
@@ -26,7 +26,7 @@ const PlayerCard = () => {
     const [accountData, setAccountData] = useState(initialState);
     const [validate, setValidate] = useState({});
     const [id, setId] = useState({});
-    const [isUpdated, setIsUpdated] = useState({});
+    const [isUpdated, setIsUpdated] = useState(false);
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const location = useLocation();
@@ -178,7 +178,9 @@ const PlayerCard = () => {
             setAccountData({...accountData, parentLast: ""});
             setAccountData({...accountData, parentEmail: ""});
             setAccountData({...accountData, parentPhone: ""});
-            dispatch(updateplayer(id, accountData));
+            setAccountData({...accountData, active: user.result.active});
+            dispatch(updateuser(user.result.role, id, accountData));
+            window.scroll(0,0);
             setIsUpdated(true);
         }
     };
@@ -186,16 +188,27 @@ const PlayerCard = () => {
     useEffect(() => {
         const token = user?.token;
 
+        if (token) {
+        const decodedToken = decode(token);
+
+        if (decodedToken.exp * 1000 < new Date().getTime());
+        }
+
         setUser(JSON.parse(localStorage.getItem('profile')));
 
-        setAccountData(user.result);
+        setAccountData(user.result)
 
         setId(user.result._id);
+
     }, [location]);
 
     return (
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
+          {isUpdated?
+              <div class="alert mt-1 uppercase alert-success" role="alert">
+                  <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
+              </div>:""}
           <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Upload Your Image
             </h6>
@@ -892,10 +905,6 @@ const PlayerCard = () => {
                     </div>
                 </div>
             <hr/>
-            {isUpdated?
-            <div class="alert alert-success" role="alert">
-                Updated Successfully!
-            </div>:""}
             <button
             className="mt-10 col-12 btn-lg btn-success"
             type="button"

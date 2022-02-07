@@ -1,25 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
-import useStyles from './../Navbars/styles';
-
-import decode from 'jwt-decode';
 // components
 
 export default function CardProfile() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const location = useLocation();
   const [userInfo, setUserInfo] = useState("");
-  const classes = useStyles();
 
   useEffect(() => {
-    const token = user?.token;
-
-    if (token) {
-    const decodedToken = decode(token);
-
-    if (decodedToken.exp * 1000 < new Date().getTime());
-    }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
     setUserInfo(user.result)

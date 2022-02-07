@@ -5,30 +5,29 @@ import "assets/styles/tailwind.css";
 
 // layouts
 
-import Account from "components/Dashboard/Account";
-import Auth from "layouts/Auth.js";
+import Account from "Dashboard/Account";
+import Auth from "layouts/Auth";
 
 // views without layouts
-
-import AboutUs from "views/AboutUs.js";
-import ContactUs from "views/ContactUs.js";
+import AboutUs from "views/AboutUs";
+import ContactUs from "views/ContactUs";
 import Rules from "views/Rules";
-import Index from "views/Index.js";
+import Index from "views/Index";
 
 const App = () => {
     return (
         <BrowserRouter>
             <Switch>
                 {/* add routes with layouts */}
-                <Route path="/account/" component={Account} />
+                <Route path="/account" component={Account} />
                 <Route path="/auth" component={Auth} />
                 {/* add routes without layouts */}
-                <Route path="/aboutus" exact component={AboutUs} />
-                <Route path="/contactus" exact component={ContactUs} />
-                <Route path="/rules" exact component={Rules} />
-                <Route path="/4baggerusa" exact component={Index} />
+                <Route path="/aboutus" component={AboutUs} />
+                <Route path="/contactus" component={ContactUs} />
+                <Route path="/rules" component={Rules} />
+                <Route path="/" exact component={Index} />
                 {/* add redirect for first page */}
-                <Redirect from="*" to="/4baggerusa" />
+                <Redirect from="*" to="/" />
             </Switch>
         </BrowserRouter>
     )

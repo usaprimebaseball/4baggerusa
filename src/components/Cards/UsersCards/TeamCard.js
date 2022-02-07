@@ -5,7 +5,7 @@ import FileBase from 'react-file-base64';
 import Form from "utilities/Forms";
 import states from 'json/states';
 import decode from 'jwt-decode';
-import { updateteam } from 'actions/user';
+import { updateuser } from 'actions/user';
 import { useDispatch } from 'react-redux';
 // components
   
@@ -106,7 +106,9 @@ const TeamCard = () => {
             setAccountData({...accountData, state: ""});
             setAccountData({...accountData, ageGroup: ""});
             setAccountData({...accountData, division: ""});
-            dispatch(updateteam(id, accountData));
+            setAccountData({...accountData, active: user.result.active});
+            dispatch(updateuser(user.result.role, id, accountData));
+            window.scroll(0,0);
             setIsUpdated(true);
         }
     };
@@ -131,6 +133,10 @@ const TeamCard = () => {
     return (
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
+          {isUpdated?
+              <div class="alert mt-1 uppercase alert-success" role="alert">
+                  <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
+              </div>:""}
           <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Upload Your Image
             </h6>
@@ -439,10 +445,7 @@ const TeamCard = () => {
             >
               Save Updates
             </button>
-            {isUpdated?
-              <div class="alert alert-success" role="alert">
-                  Updated Successfully!
-              </div>:""}
+
             </div>
           </form>
         </div>

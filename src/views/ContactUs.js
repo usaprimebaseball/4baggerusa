@@ -9,7 +9,7 @@ export default function Index() {
     window.scrollTo(0, 0);
   return (
     <>
-      <IndexNavbar fixed />
+      <IndexNavbar  />
       <section className="header relative items-center flex h-screen max-h-860-px" style={{backgroundImage:`url(${background})`}}>
         <div className="container mx-auto items-center flex flex-wrap">
           <div className="w-full md:w-12/12 lg:w-8/12 xl:w-12  8/12 px-4">

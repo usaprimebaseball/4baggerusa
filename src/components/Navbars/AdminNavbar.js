@@ -57,7 +57,7 @@ export default function Navbar() {
               <li className="flex items-center">
                 <a
                   className="text-white hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold"
-                  href="/4baggerusa"
+                  href="/"
                 >
                   Home
                 </a>
