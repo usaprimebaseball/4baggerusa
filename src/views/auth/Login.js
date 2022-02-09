@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Form from "utilities/Forms";
 import { signin } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { adminsignin } from "actions/auth";
 
 const initialState = { email: "", password: "" }
@@ -14,9 +14,10 @@ export default function Login() {
   const [validate, setValidate] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const error = useSelector(state => state.errors);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  
   const validateForm = () => {
       let isValid = true;
 
@@ -45,7 +46,6 @@ export default function Login() {
 
   const login = (e) => {
       e.preventDefault();
-
       const validate = validateForm();
 
       if (validate) {
@@ -76,6 +76,7 @@ export default function Login() {
           setShowPassword(true);
       }
   };
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -109,8 +110,11 @@ export default function Login() {
                   Click here to sign in.
                 </button>
                     }
-
                   </div>
+                  {error.length > 0?
+              <div className="alert mt-1 uppercase alert-danger" role="alert">
+                  <h2><span className='text-danger font-bold'>ERROR</span>: {error[error.length - 1]}</h2>
+              </div>:""}
                 </div>
                 
               </div>

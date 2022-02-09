@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import FileBase from 'react-file-base64';
-import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-import Stack from '@mui/material/Stack';
 import states from 'json/states';
 import Form from "utilities/Forms";
 import { playersignup } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const initialState = {
     active: false, role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
@@ -24,6 +19,8 @@ const Player = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const [passwordMatch, setPasswordMatch] = useState(true);
+
+    const error = useSelector(state => state.errors);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -1150,6 +1147,10 @@ const Player = () => {
         <div className='alert alert-danger'>
            <i className="fas fa-exclamation-triangle"></i> Password is not matching the confirmation!
         </div>: ""}
+        {error.length > 0?
+        <div className="alert mt-1 uppercase alert-danger" role="alert">
+            <h2><span className='text-danger font-bold'>ERROR</span>: {error[error.length - 1]}</h2>
+        </div>:""}
         <div className="text-center mt-6">
             <button
                 className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"

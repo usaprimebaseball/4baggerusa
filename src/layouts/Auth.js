@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation, useHistory} from "react-router-dom";
 import decode from 'jwt-decode';
 
 // components
-import Account from "dashboard/Account";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import FooterSmall from "components/Footers/FooterSmall.js";
 
@@ -15,8 +14,12 @@ import Register from "views/auth/Register.js";
 export default function Auth() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const location = useLocation();
+  const history = useHistory();
 
-  
+  const routing = (route) => {
+    history.push(route);
+  }
+
   useEffect(() => {
     const token = user?.token;
 
@@ -52,7 +55,7 @@ export default function Auth() {
         <FooterSmall absolute />
       </section>
     </main></>:
-    <Account />}
+    routing(`/Account`)}
       
     </>
   );

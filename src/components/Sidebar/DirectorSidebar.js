@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Logo from "assets/img/logo.png";
 
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import {Tooltip} from '@material-ui/core';
 
 export default function DirectorSidebar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -73,19 +74,21 @@ export default function DirectorSidebar() {
                   <i className="fas fa-tools mr-2 text-sm " />
                   Update Details
                 </Link>
-
-                <Link
+                  <Tooltip title={user.result.active ? "" : "Account is pending approval"}>
+                  <Link 
                   className={
                     "text-xs uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/maps") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/createtournament`}
+                  to={user.result.active ? `/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/createtournament`:`/account/${user.result.role}/${user.result._id}`}
                 >
                   <i className="fa fa-baseball-ball mr-2 text-sm " />
                   Create Tournament
                 </Link>
+                  </Tooltip>
+                
             </ul>
 
             {/* Divider */}

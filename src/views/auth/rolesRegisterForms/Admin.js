@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Form from "utilities/Forms";
 import { adminsignup } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const initialState = {
     role: "admin", firstName: "", lastName: "", email: "", phoneNumber: "", password: "", passwordConfirm: "", agreeBtn: ""
@@ -17,6 +17,7 @@ const Admin = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const error = useSelector(state => state.errors);
 
     const validateForm = () => {
         let isValid = true;
@@ -370,6 +371,11 @@ const Admin = () => {
         <div className='alert alert-danger'>
             <i className="fas fa-exclamation-triangle"></i> Password is not matching the confirmation!
         </div>: ""}
+        {error.length > 0?
+            <div className="alert mt-1 uppercase alert-danger" role="alert">
+                <h2><span className='text-danger font-bold'>ERROR</span>: {error[error.length - 1]}</h2>
+            </div>:""
+        }
         <div className="text-center mt-6">
             <button
                 className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"

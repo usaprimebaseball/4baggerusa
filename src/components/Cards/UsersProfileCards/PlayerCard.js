@@ -1,17 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
 import states from 'json/states';
 import decode from 'jwt-decode';
 import FileBase from 'react-file-base64';
-import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-import Stack from '@mui/material/Stack';
 import { updateuser } from 'actions/user';
+import { Tooltip } from '@material-ui/core';
 
 // components
 
@@ -31,6 +27,7 @@ const PlayerCard = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const location = useLocation();
 
+    const error = useSelector(state => state.errors);
     const dispatch = useDispatch();
 
     const validateForm = () => {
@@ -150,7 +147,7 @@ const PlayerCard = () => {
     const update = (e) => {
         e.preventDefault();
         
-        console.log(accountData);
+        window.scroll(0,0);
 
         const validate = validateForm();
 
@@ -180,7 +177,6 @@ const PlayerCard = () => {
             setAccountData({...accountData, parentPhone: ""});
             setAccountData({...accountData, active: user.result.active});
             dispatch(updateuser(user.result.role, id, accountData));
-            window.scroll(0,0);
             setIsUpdated(true);
         }
     };
@@ -205,10 +201,13 @@ const PlayerCard = () => {
     return (
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
           <form>
-          {isUpdated?
-              <div className="alert mt-1 uppercase alert-success" role="alert">
-                  <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
-              </div>:""}
+          {error.length > 0?
+              <div className="alert mt-1 uppercase alert-danger" role="alert">
+                  <h2><span className='text-danger font-bold'>ERROR</span>: {error[error.length - 1]}</h2>
+              </div>:
+                isUpdated ? <div className="alert mt-1 uppercase alert-success" role="alert">
+                    <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
+                </div>:""}
           <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Upload Your Image
             </h6>
@@ -304,25 +303,17 @@ const PlayerCard = () => {
                             className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                             htmlFor="grid-password"
                         >
-                            Email Address
+                            Email Address  <span style={{color:'red'}}>(used for Login)</span>
                         </label>
-                        <input
-                            type="text"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            defaultValue={user.result.email}
-                            onChange={(e) =>setAccountData({...accountData, email: e.target.value})}
-                        />
-                        <div
-                            className={`invalid-feedback text-start ${
-                            validate.validate && validate.validate.email
-                                ? "d-block"
-                                : "d-none"
-                            }`}
-                        >
-                            {validate.validate && validate.validate.email
-                            ? validate.validate.email[0]
-                            : ""}
-                        </div>
+                        <Tooltip title="To update email. Please contact support">
+                          <input
+                              disabled
+                              type="text"
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              defaultValue={user.result.email}
+                              onChange={(e) =>setAccountData({...accountData, email: e.target.value})}
+                          />
+                        </Tooltip>
                     </div>
                 </div>
                 <div className="w-full lg:w-6/12 px-4">

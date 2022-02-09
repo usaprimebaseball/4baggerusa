@@ -33,3 +33,6 @@ export const createEvent = (formData) => API.post(`/events`, formData);
 export const getEvents = () => API.get(`/events`);
 
 
+export const createError = (errorMessage) => API.post(`/errors`, errorMessage);
+
+export const createSuccess = (successMessage) => API.post(`/success`, successMessage);

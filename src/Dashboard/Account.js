@@ -42,7 +42,8 @@ export default function Account() {
           <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/users`} component={UserActivity} />
           <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/createtournament`} component={CreateEvent} />
           <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}`} component={UserDetails} />
-        
+          <Route exact path={`/account/`} component={UserDetails} />
+          <Route exact path={`/account/${user.result.role === 'other' ? 'user':user.result.role}/`} component={UserDetails} />
         </Switch>
       <FooterAdmin />
       </div>

@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import states from 'json/states';
 import Form from "utilities/Forms";
 import { createevent } from 'actions/event';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import Modal from "react-bootstrap/Modal";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import ModalTitle from "react-bootstrap/ModalTitle";
 
 const initialState = {
     createdBy: "", live: false, eventName: "", startDate: "", endDate: "", costPerTeam: "", ageGroup: "", maxTeamsNum: "", fieldComplexName: "",
-    fieldComplexStreet: "", fieldComplexState: "", fieldComplexCity: "", fieldComplexZipcode: ""
+    fieldComplexStreet: "", fieldComplexState: "", fieldComplexCity: "", fieldComplexZipcode: "", gameFormat: ""
 };
 
 const CreateEventForm = () => {
@@ -17,6 +22,7 @@ const CreateEventForm = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const location = useLocation();
     const dispatch = useDispatch();
+    const error = useSelector(state => state.errors);
 
     const validateForm = () => {
         let isValid = true;
@@ -66,6 +72,10 @@ const CreateEventForm = () => {
                 value: accountData.fieldComplexZipcode,
                 isRequired: true,
             },
+            gameFormat: {
+                value: accountData.gameFormat,
+                isRequired: true,
+            },
         });
 
 
@@ -100,9 +110,10 @@ const CreateEventForm = () => {
             setAccountData({...accountData, maxTeamsNum: ""});
             setAccountData({...accountData, ageGroup: ""});
             setAccountData({...accountData, costPerTeam: ""});
+            setAccountData({...accountData, gameFormat: ""});
 
-            // window.scroll(0,0);
-            // setIsCreated(true);
+            window.scroll(0,0);
+            setIsCreated(true);
             dispatch(createevent(accountData));
         }
     };
@@ -113,14 +124,17 @@ const CreateEventForm = () => {
     }, [location]);
     
     return(
-        <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <div className="flex-auto px-4 lg:px-10 py-10 pt-0 bg-white rounded">
           <form>
-          {isCreated?
-              <div className="alert mt-1 uppercase alert-success" role="alert">
-                  <h2><span className='text-success font-bold'>SUCCESS</span>: Created Successfully!</h2>
-              </div>:""}
+          {error.length > 0?
+              <div className="alert mt-1 uppercase alert-danger" role="alert">
+                  <h2><span className='text-danger font-bold'>ERROR</span>: {error[error.length - 1]}</h2>
+              </div>:
+                isCreated ? <div className="alert mt-1 uppercase alert-success" role="alert">
+                    <h2><span className='text-success font-bold'>SUCCESS</span>: Created Successfully!</h2>
+                </div>:""}
               <hr className=''/>
-            <h6 className="text-warning text-sm mt-3 mb-6 font-bold text-xl">
+            <h6 className="text-warning text-xs mt-3 mb-6 font-bold text-xl">
               Create New Tournament
             </h6>
             <div className="">
@@ -128,14 +142,14 @@ const CreateEventForm = () => {
                 <div className='row'>
                     <div className="relative col-md-6 col-xs-12 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Event Name <span style={{color:'red'}}>*</span>
                         </label>
                         <input
                         type="text"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                                 validate.validate && validate.validate.eventName
                                 ? "is-invalid "
                                 : ""
@@ -160,14 +174,14 @@ const CreateEventForm = () => {
 
                     <div className="relative col-md-3 col-xs-12 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase  text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Start Date <span style={{color:'red'}}>*</span>
                         </label>
                         <input
                         type="date"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                                 validate.validate && validate.validate.startDate
                                 ? "is-invalid "
                                 : ""
@@ -191,14 +205,14 @@ const CreateEventForm = () => {
                     </div>
                     <div className="relative col-md-3 col-xs-12 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase  text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             End Date <span style={{color:'red'}}>*</span>
                         </label>
                         <input
                         type="date"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                                 validate.validate && validate.validate.endDate
                                 ? "is-invalid "
                                 : ""
@@ -221,18 +235,18 @@ const CreateEventForm = () => {
                         </div>
                     </div>
                 </div>
-                
+        
                 <div className='row'>
                     <div className="relative col-md-4 col-xs-12 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase  text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Cost Per Team <span style={{color:'red'}}>*</span>
                         </label>
                         <input
                             type="text"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                             validate.validate && validate.validate.costPerTeam
                                 ? "is-invalid "
                                 : ""
@@ -258,7 +272,7 @@ const CreateEventForm = () => {
 
                     <div className="relative col-md-4 col-xs-12 mb-3">
                         <label
-                        className="block uppercase text-white text-sm font-bold mb-2"
+                        className="block uppercase  text-xs font-bold mb-2"
                         htmlFor="grid-password"
                         >
                         Age group <span style={{color:'red'}}>*</span>
@@ -273,7 +287,7 @@ const CreateEventForm = () => {
                             }`}
                             placeholder="Name"
                             >
-                            <option defaultValue={true} value="">Select age group..</option>
+                            <option defaultValue={true} value="">Select Age Group..</option>
                             <option value="5u">5U</option>
                             <option value="6u">6U</option>
                             <option value="7u">7U</option>
@@ -304,14 +318,14 @@ const CreateEventForm = () => {
 
                     <div className="relative col-md-4 col-xs-12 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase  text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Max Teams Number <span style={{color:'red'}}>*</span>
                         </label>
                         <input
                             type="text"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                             validate.validate && validate.validate.maxTeamsNum
                                 ? "is-invalid "
                                 : ""
@@ -336,51 +350,85 @@ const CreateEventForm = () => {
                         </div>
                     </div>
                     <div className="relative col-md-4 col-xs-12 mb-3">
-                    <label
-                        className="block uppercase text-white text-sm font-bold mb-2"
-                        htmlFor="grid-password"
-                    >
-                        name of field complex <span style={{color:'red'}}>*</span>
-                    </label>
-                    <input
-                    type="text"
-                        className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
-                            validate.validate && validate.validate.fieldComplexName
-                            ? "is-invalid "
-                            : ""
-                        }`}
-                        value={accountData.fieldComplexName}
-                        placeholder="name of field complex"
-                        onChange={(e) => setAccountData({...accountData, fieldComplexName: e.target.value})}
-                    />
+                        <label
+                            className="block uppercase  text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                        >
+                            name of field complex <span style={{color:'red'}}>*</span>
+                        </label>
+                        <input
+                        type="text"
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                                validate.validate && validate.validate.fieldComplexName
+                                ? "is-invalid "
+                                : ""
+                            }`}
+                            value={accountData.fieldComplexName}
+                            placeholder="name of field complex"
+                            onChange={(e) => setAccountData({...accountData, fieldComplexName: e.target.value})}
+                        />
 
-                    <div
-                    className={`invalid-feedback text-start ${
-                        validate.validate && validate.validate.fieldComplexName
-                        ? "d-block"
-                        : "d-none"
-                    }`}
-                    >
-                    {validate.validate && validate.validate.fieldComplexName
-                        ? validate.validate.fieldComplexName[0]
-                        : ""}
-                    </div>
-                </div>  
+                        <div
+                        className={`invalid-feedback text-start ${
+                            validate.validate && validate.validate.fieldComplexName
+                            ? "d-block"
+                            : "d-none"
+                        }`}
+                        >
+                        {validate.validate && validate.validate.fieldComplexName
+                            ? validate.validate.fieldComplexName[0]
+                            : ""}
+                        </div>
+                    </div> 
+                    <div className="relative col-md-6 col-xs-12 mb-3">
+                        <label
+                        className="block uppercase  text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                        >
+                        Game Format <span style={{color:'red'}}>*</span>
+                        </label>
+                        <select
+                            type="select"
+                            onChange={(e) => setAccountData({...accountData, gameFormat: e.target.value})}
+                            className={`form-control ${
+                                validate.validate && validate.validate.gameFormat
+                                    ? "is-invalid "
+                                    : ""
+                            }`}
+                            placeholder="Name"
+                            >
+                            <option defaultValue={true} value="">Select Game Format..</option>
+                            <option value="2pool">2 pool play games into single elimination</option>
+                            <option value="3pool">3 pool play games into single elimination</option>
+                            <option value="4game"> 4 game guaranty</option>
+                        </select>
+                        <div
+                            className={`invalid-feedback text-start ${
+                                validate.validate && validate.validate.gameFormat
+                                ? "d-block"
+                                : "d-none"
+                            }`}
+                            >
+                            {validate.validate && validate.validate.gameFormat
+                                ? validate.validate.gameFormat[0]
+                                : ""}
+                        </div>
+                    </div> 
                 </div>
-                
+        
                 <hr/><br/>
                 <span className="uppercase text-info font-bold">address: <span style={{color:'red'}}>*</span></span><br/><br/>
                 <div className='row'>
                     <div className="relative col-12 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase  text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             Street <span style={{color:'red'}}>*</span>
                         </label>
                         <input
                         type="text"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                                 validate.validate && validate.validate.fieldComplexStreet
                                 ? "is-invalid "
                                 : ""
@@ -403,16 +451,16 @@ const CreateEventForm = () => {
                         </div>
                     </div>
 
-                    <div className="relative col-4 mb-3">
+                    <div className="relative col-md-4 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase  text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             City <span style={{color:'red'}}>*</span>
                         </label>
                         <input
                         type="text"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                                 validate.validate && validate.validate.fieldComplexCity
                                 ? "is-invalid "
                                 : ""
@@ -435,9 +483,9 @@ const CreateEventForm = () => {
                         </div>
                     </div>
 
-                    <div className="relative col-4 mb-3">
+                    <div className="relative col-md-4 mb-3">
                         <label
-                            className="block uppercase text-white text-sm font-bold mb-2"
+                            className="block uppercase  text-xs font-bold mb-2"
                             htmlFor="grid-password"
                         >
                             State <span style={{color:'red'}}>*</span>
@@ -468,16 +516,16 @@ const CreateEventForm = () => {
                         </div>
                     </div>
 
-                    <div className="relative col-4 mb-3">
+                    <div className="relative col-md-4 mb-3">
                     <label
-                        className="block uppercase text-white text-sm font-bold mb-2"
+                        className="block uppercase  text-xs font-bold mb-2"
                         htmlFor="grid-password"
                     >
                         Zip Code <span style={{color:'red'}}>*</span>
                     </label>
                     <input
                         type="text"
-                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                                 validate.validate && validate.validate.fieldComplexZipcode
                                 ? "is-invalid "
                                 : ""
@@ -505,16 +553,16 @@ const CreateEventForm = () => {
 
                 <div className="text-center mt-6">
                     <button
-                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        className="bg-success text-white active:bg-blueGray-600 sx font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                         type="button"
                         onClick={create}
                     >
                         Create Tournament
                     </button>
                 </div>
-            </div>
-        </form>
-    </div>
+                </div>
+            </form>
+        </div>
     )
 };
 
