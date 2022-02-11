@@ -35,14 +35,6 @@ const UserDropdown = () => {
   };
 
   useEffect(() => {
-    const token = user?.token;
-
-    if (token) {
-      const decodedToken = decode(token);
-
-      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-    }
-
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
   
@@ -75,9 +67,8 @@ const UserDropdown = () => {
         }
       >
         <Link
-          to={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}`}
+          to={`/account/${user.result.role === "admin" ? "admin/":""}${user.result._id}`}
           className="text-info hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
-          
         >
           <i className="fas fa-tachometer-alt"></i>&nbsp;
           Dashboard

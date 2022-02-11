@@ -109,7 +109,7 @@ const TeamCard = () => {
             setAccountData({...accountData, ageGroup: ""});
             setAccountData({...accountData, division: ""});
             setAccountData({...accountData, active: user.result.active});
-            dispatch(updateuser(user.result.role, id, accountData));
+            dispatch(updateuser(id, accountData));
             setIsUpdated(true);
         }
     };

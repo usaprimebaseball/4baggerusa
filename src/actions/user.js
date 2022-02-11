@@ -1,4 +1,4 @@
-import { UPDATE, FETCH_ALL, FETCH_ONE, ACTIVITY, ADD_ERROR, CLEAR_ERROR } from '../constants/actionTypes';
+import { UPDATE, FETCH_ALL, ACTIVITY, ADD_ERROR, CLEAR_ERROR, FETCH_ONE_USER } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 // Get users
@@ -16,12 +16,17 @@ export const getusers = () => async (dispatch) => {
   }
 };
 
-export const getuser = (id) => async (dispatch) => {
+export const getuser = (id, router) => async (dispatch) => {
     try {
       const { data } = await api.getUser(id);
+      const user = JSON.parse(localStorage.getItem('profile'));
 
-      dispatch({ type: FETCH_ONE, payload: data });
+      dispatch({ type: FETCH_ONE_USER, payload: data });
       dispatch({ type: CLEAR_ERROR });
+      
+      if ( user.result.role === "admin" ){
+        router.push(`/account/users/${data.firstName}`)
+      } 
 
     } catch (error) {
       await api.createError(error.response.data);
@@ -31,9 +36,9 @@ export const getuser = (id) => async (dispatch) => {
   };
 
   // Update Info
-  export const updateuser = (role, id, userInfo) => async (dispatch) => {
+  export const updateuser = (id, userInfo) => async (dispatch) => {
     try {
-      const { data } = await api.updateUser(role, id, userInfo);
+      const { data } = await api.updateUser(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
 
@@ -42,7 +47,6 @@ export const getuser = (id) => async (dispatch) => {
       dispatch({ type: CLEAR_ERROR });
     } catch (error) {
       await api.createError(error.response.data);
-      console.log(error.response.data)
 
       dispatch({ type: ADD_ERROR, payload: error.response.data.message});
     }
@@ -53,9 +57,10 @@ export const getuser = (id) => async (dispatch) => {
       const { data } = await api.updateAdmin(id, userInfo);
 
       dispatch({ type: UPDATE, payload: data });
-      setTimeout(await window.location.reload(), 4000);
-      dispatch({ type: CLEAR_ERROR });
 
+      setInterval(await window.location.reload(), 20000);
+
+      dispatch({ type: CLEAR_ERROR });
     } catch (error) {
       await api.createError(error.response.data);
 
@@ -63,12 +68,13 @@ export const getuser = (id) => async (dispatch) => {
     }
   };
 
-  export const updateactivity = (userRole, id, active) => async (dispatch) => {
+  export const updateactivity = (id, active, router) => async (dispatch) => {
     try {
-      const { data } = await api.updateActivity(userRole, id, active);
+      const { data } = await api.updateActivity(id, active);
       dispatch({ type: ACTIVITY, payload: data });
-      setTimeout(await window.location.reload(), 4000);
-      dispatch({ type: CLEAR_ERROR });
+      window.scroll(0, 0);
+      dispatch({ type: CLEAR_ERROR });  
+      router.push(`/account/admin/users`)
 
     } catch (error) {
       await api.createError(error.response.data);

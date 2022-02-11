@@ -1,25 +1,32 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import { getusers } from "actions/user";
-
 import PropTypes from "prop-types";
-import { updateactivity } from "actions/user";
+import GoBack from "views/GoBackPage";
+import { getuser } from "actions/user";
 
 // components
 export default function UsersTable({ color }) {
   const dispatch = useDispatch();
+  window.scroll(0, 0);
   const users = useSelector((state) => state.users);
   const location = useLocation();
+  const history = useHistory();
 
-  useEffect(() => {
+  const handleNameClick = (user) => {
+    dispatch(getuser(user._id, history));
+  };
+
+  useEffect(() => {    
     dispatch(getusers());
 }, [location]);
 
   return (
     <>
       <div
+        style={{marginBottom: users.length === 0 ?"122px":"0"}}
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
@@ -41,7 +48,7 @@ export default function UsersTable({ color }) {
         </div>
         <div className="block w-full overflow-x-auto">
           {/* Projects table */}
-          <table className="items-center col-12 bg-transparent border-collapse">
+          <table className="items-center col-12 bg-transparent border-collapse ">
             <thead>
               <tr>
                 <th
@@ -106,16 +113,16 @@ export default function UsersTable({ color }) {
                 </th>
               </tr>
             </thead>
-              {users ? users.map((user) => {
-                return <tbody key={user._id}> 
+              {users ? users.map((user) => (
+                 <tbody key={user._id}> 
                 <tr>
                   <th>
-                    <button type="button" className="btn-outline-info border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                    <button type="button" onClick={() => handleNameClick(user)} className="btn-outline-info border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                     {user.profileImage?<img
                           src={user.profileImage}
                           className="h-12 w-12 bg-white rounded-full border"
                           alt="..."
-                        ></img>:<Avatar className="bg-danger font-bold">{user.firstName.charAt(0)} {user.lastName.charAt(0) }</Avatar>}
+                        ></img>:user.firstName ? <Avatar className="bg-danger font-bold">{user.firstName.charAt(0)}</Avatar>:<Avatar className="bg-danger font-bold"></Avatar>}
                         
                         <span
                           className={
@@ -140,21 +147,15 @@ export default function UsersTable({ color }) {
                   <td className="uppercase border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {user.active ? <i className="fas fa-circle text-success mr-2"> Active</i> :<i className="fas fa-circle text-danger mr-2"> Inactive</i>}
                   </td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {user.active ? 
-                    <button onClick={() => dispatch(updateactivity(user.role, user._id, {...user, active:false}))} className="btn btn-danger" variant="contained">
-                    Deactivate
-                  </button>:
-                  <button onClick={() => dispatch(updateactivity(user.role, user._id, {...user, active:true}))} className="btn btn-success" variant="contained">
-                    Activate
-                  </button>
-                  }
+                  <td className="border-t-0  align-middle border-l-0 border-r-0 text-xs whitespace-nowrap ">
+                    <button  onClick={() => handleNameClick(user)} className="btn btn-primary" variant="contained">
+                      View Details / Manage Activation
+                    </button>
                   </td>
                 </tr>
                 
               </tbody> 
-              
-              }):""}
+              )):<GoBack />}
           </table>
         </div>
       </div>

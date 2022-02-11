@@ -74,53 +74,7 @@ export default function Footer() {
                         About Us
                       </Link>
                     </li>
-                    <li>
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com?ref=nr-footer"
-                      >
-                        Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://www.github.com/creativetimofficial?ref=nr-footer"
-                      >
-                        Github
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/bootstrap-themes/free?ref=nr-footer"
-                      >
-                        Free Products
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="w-full lg:w-4/12 px-4">
-                  <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                    Other Resources
-                  </span>
-                  <ul className="list-unstyled">
-                    <li>
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://github.com/creativetimofficial/notus-react/blob/main/LICENSE.md?ref=nr-footer"
-                      >
-                        MIT License
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms?ref=nr-footer"
-                      >
-                        Terms & Conditions
-                      </a>
-                    </li>
+                    
                     <li>
                       <a
                         className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"

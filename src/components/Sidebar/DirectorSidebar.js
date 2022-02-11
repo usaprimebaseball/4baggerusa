@@ -69,9 +69,9 @@ export default function DirectorSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.role}/${user.result._id}`}
+                  to={`/account/${user.result._id}`}
                 >
-                  <i className="fas fa-tools mr-2 text-sm " />
+                  <i className="fas text-info fa-tools mr-2 text-sm " />
                   Update Details
                 </Link>
                   <Tooltip title={user.result.active ? "" : "Account is pending approval"}>
@@ -82,9 +82,9 @@ export default function DirectorSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={user.result.active ? `/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/createtournament`:`/account/${user.result.role}/${user.result._id}`}
+                  to={user.result.active ? `/account/${user.result._id}/createtournament`:`/account/${user.result._id}`}
                 >
-                  <i className="fa fa-baseball-ball mr-2 text-sm " />
+                  <i className="fa text-info fa-baseball-ball mr-2 text-sm " />
                   Create Tournament
                 </Link>
                   </Tooltip>

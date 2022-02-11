@@ -11,7 +11,7 @@ export default function Index() {
     <>
       <IndexNavbar  />
       <section className="header relative items-center flex h-screen max-h-860-px" style={{backgroundImage:`url(${background})`}}>
-        <div className="container mx-auto items-center flex flex-wrap">
+        <div className="container mx-auto items-center flex flex-wrap" style={{paddingTop: "60px"}}>
           <div className="w-full md:w-12/12 lg:w-8/12 xl:w-12  8/12 px-4">
             <div className="pt-32 sm:pt-0">
             <div  className="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-lg bg-blueGray-200">

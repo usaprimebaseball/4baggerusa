@@ -176,7 +176,7 @@ const PlayerCard = () => {
             setAccountData({...accountData, parentEmail: ""});
             setAccountData({...accountData, parentPhone: ""});
             setAccountData({...accountData, active: user.result.active});
-            dispatch(updateuser(user.result.role, id, accountData));
+            dispatch(updateuser(id, accountData));
             setIsUpdated(true);
         }
     };
@@ -208,10 +208,10 @@ const PlayerCard = () => {
                 isUpdated ? <div className="alert mt-1 uppercase alert-success" role="alert">
                     <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
                 </div>:""}
-          <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Upload Your Image
             </h6>
-          <div className="w-full lg:w-6/12 px-4">
+            <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
                   <FileBase
                     type="file"
@@ -237,7 +237,7 @@ const PlayerCard = () => {
                     : ""}
                 </div>
                 </div>
-              </div>
+            </div>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Player Information
             </h6>

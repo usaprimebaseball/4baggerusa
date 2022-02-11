@@ -53,10 +53,11 @@ export default function Register() {
                         placeholder="Name"
                       >
                         <option defaultValue={true} value="">-- CHOOSE YOUR ROLE --</option>
-                        <option value="director">Director</option>
+                        <option value="director">Tournament Director</option>
                         <option value="team">Team</option>
                         <option value="player">Player</option>
                         <option value="other">Other</option>
+                        <option value="">---------</option>
                         <option value="admin">Admin</option>
                       </select>
                     </div><hr/><br/>

@@ -68,9 +68,9 @@ export default function DirectorSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.role}/${user.result._id}`}
+                  to={`/account/admin/${user.result._id}`}
                 >
-                  <i className="fas fa-tools mr-2 text-sm " />
+                  <i className="fas fa-tools text-info mr-2 text-sm " />
                   Update Details
                 </Link>
 
@@ -81,9 +81,9 @@ export default function DirectorSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.role === 'other' ? 'user':user.result.role}/${user.result._id}/users`}
+                  to={`/account/admin/users`}
                 >
-                  <i className="fa fa-baseball-ball mr-2 text-sm " />
+                  <i className="fas mr-2 text-info fa-users" />
                   Users
                 </Link>
             </ul>

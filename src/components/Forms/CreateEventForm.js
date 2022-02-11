@@ -4,14 +4,11 @@ import Form from "utilities/Forms";
 import { createevent } from 'actions/event';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import Modal from "react-bootstrap/Modal";
-import ModalBody from "react-bootstrap/ModalBody";
-import ModalHeader from "react-bootstrap/ModalHeader";
-import ModalFooter from "react-bootstrap/ModalFooter";
-import ModalTitle from "react-bootstrap/ModalTitle";
+import FileBase from 'react-file-base64';
+
 
 const initialState = {
-    createdBy: "", live: false, eventName: "", startDate: "", endDate: "", costPerTeam: "", ageGroup: "", maxTeamsNum: "", fieldComplexName: "",
+    eventImage: "", createdBy: "", live: false, eventName: "", startDate: "", endDate: "", costPerTeam: "", ageGroup: "", maxTeamsNum: "", fieldComplexName: "",
     fieldComplexStreet: "", fieldComplexState: "", fieldComplexCity: "", fieldComplexZipcode: "", gameFormat: ""
 };
 
@@ -30,6 +27,10 @@ const CreateEventForm = () => {
         let validator = Form.validator({
             eventName: {
                 value: accountData.eventName,
+                isRequired: true,
+            },
+            eventImage: {
+                value: accountData.eventImage,
                 isRequired: true,
             },
             startDate: {
@@ -100,6 +101,7 @@ const CreateEventForm = () => {
             setValidate({});
             setAccountData({...accountData, createdBy: user.result.firstName + ' ' + user.result.lastName});
             setAccountData({...accountData, eventName: ""});
+            setAccountData({...accountData, eventImage: ""});
             setAccountData({...accountData, startDate: ""});
             setAccountData({...accountData, endDate: ""});
             setAccountData({...accountData, fieldComplexName: ""});
@@ -126,21 +128,54 @@ const CreateEventForm = () => {
     return(
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0 bg-white rounded">
           <form>
-          {error.length > 0?
+              <hr className=''/>
+            <h6 className="text-warning text-xs mt-3 mb-6 font-bold text-xl">
+              Create New Tournament
+            </h6>
+            {error.length > 0?
               <div className="alert mt-1 uppercase alert-danger" role="alert">
                   <h2><span className='text-danger font-bold'>ERROR</span>: {error[error.length - 1]}</h2>
               </div>:
                 isCreated ? <div className="alert mt-1 uppercase alert-success" role="alert">
                     <h2><span className='text-success font-bold'>SUCCESS</span>: Created Successfully!</h2>
                 </div>:""}
-              <hr className=''/>
-            <h6 className="text-warning text-xs mt-3 mb-6 font-bold text-xl">
-              Create New Tournament
-            </h6>
             <div className="">
-        
+
                 <div className='row'>
-                    <div className="relative col-md-6 col-xs-12 mb-3">
+                    <div className="relative col-md-12 col-xs-12 mb-3">
+                        <label
+                            className="block uppercase text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                        >
+                            Tournament Image <span style={{color:'red'}}>*</span>
+                        </label>
+                        <FileBase
+                            type="file"
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                                validate.validate && validate.validate.eventImage
+                                ? "is-invalid "
+                                : ""
+                            }`}
+                            defaultValue={user.result.eventImage}
+                            onDone={({base64}) => setAccountData({...accountData, eventImage: base64})}
+                            multiple={false}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        />
+                        <div
+                        className={`invalid-feedback text-start ${
+                            validate.validate && validate.validate.eventImage
+                            ? "d-block"
+                            : "d-none"
+                        }`}
+                        >
+                        {validate.validate && validate.validate.eventImage
+                            ? validate.validate.eventImage[0]
+                            : ""}
+                        </div>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                         <label
                             className="block uppercase text-xs font-bold mb-2"
                             htmlFor="grid-password"
@@ -380,7 +415,7 @@ const CreateEventForm = () => {
                             : ""}
                         </div>
                     </div> 
-                    <div className="relative col-md-6 col-xs-12 mb-3">
+                    <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                         <label
                         className="block uppercase  text-xs font-bold mb-2"
                         htmlFor="grid-password"

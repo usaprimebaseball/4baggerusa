@@ -214,7 +214,7 @@ const Director = () => {
         <div className="directorForm">
         
         <div className='row'>
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -246,7 +246,7 @@ const Director = () => {
                 </div>
             </div>
 
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -280,7 +280,7 @@ const Director = () => {
         </div>
         
         <div className='row'>
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -314,7 +314,7 @@ const Director = () => {
                   </div>
             </div>
 
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -350,7 +350,7 @@ const Director = () => {
         </div>
         
         <div className='row'>
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -382,7 +382,7 @@ const Director = () => {
                 </div>
             </div>
 
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -585,7 +585,7 @@ const Director = () => {
                 </div>
             </div>
 
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -616,7 +616,7 @@ const Director = () => {
                     : ""}
                 </div>
             </div>
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -648,7 +648,7 @@ const Director = () => {
                 </div>
             </div>
 
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -680,7 +680,7 @@ const Director = () => {
                 </div>
             </div>
 
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -783,7 +783,7 @@ const Director = () => {
 
         <span className="uppercase text-info font-bold">City and state where fields/complex are located: <span style={{color:'red'}}>*</span></span><br/><br/>
         <div className='row'>
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -814,7 +814,7 @@ const Director = () => {
                     : ""}
                 </div>
             </div>  
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -852,7 +852,7 @@ const Director = () => {
         <span className="uppercase text-info font-bold">set your password: <span style={{color:'red'}}>*</span></span><br/><br/>
 
         <div className='row'>
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -900,7 +900,7 @@ const Director = () => {
                 </div>
             </div>
 
-            <div className="relative col-md-6 col-xs-12 mb-3">
+            <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                 <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -988,14 +988,13 @@ const Director = () => {
         <div className='alert alert-danger'>
            <i className="fas fa-exclamation-triangle"></i> Routing Number is not matching the confirmation!
         </div>:""}
-        {error?
-            <div className="alert mt-1 uppercase alert-danger" role="alert">
-                <h2><span className='text-danger font-bold'>ERROR</span>: {error}</h2>
-            </div>:""
-        }
+        {error.length > 0?
+        <div className="alert mt-1 uppercase alert-danger" role="alert">
+            <h2><span className='text-danger font-bold'>ERROR</span>: {error[error.length - 1]}</h2>
+        </div>:""}
         <div className="text-center mt-6">
             <button
-                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-success text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={register}
             >

@@ -12,7 +12,7 @@ export default function Landing() {
   return (
     <>
       <IndexNavbar transparent />
-      <main>
+      <main style={{paddingTop: "20px"}}>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"

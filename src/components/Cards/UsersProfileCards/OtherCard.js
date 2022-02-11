@@ -83,7 +83,7 @@ const OtherCard = () => {
             setAccountData({...accountData, email: ""});
             setAccountData({...accountData, phoneNumber: ""});
             setAccountData({...accountData, active: user.result.active});
-            dispatch(updateuser(user.result.role, id, accountData));
+            dispatch(updateuser(id, accountData));
             setIsUpdated(true);
         }
     };

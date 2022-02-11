@@ -1,6 +1,5 @@
 /*eslint-disable*/
 import React from "react";
-import { Link } from "react-router-dom";
 import background from "../assets/img/bb1.jpg";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";

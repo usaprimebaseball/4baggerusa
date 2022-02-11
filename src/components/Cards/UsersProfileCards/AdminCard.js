@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
-import decode from 'jwt-decode';
 import { updateadmin } from 'actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from '@material-ui/core';
@@ -81,17 +80,11 @@ const AdminCard = () => {
     };
 
     useEffect(() => {
-        const token = user?.token;
-
-        if (token) {
-        const decodedToken = decode(token);
-
-        if (decodedToken.exp * 1000 < new Date().getTime());
-        }
-
         setUser(JSON.parse(localStorage.getItem('profile')));
-        setAccountData(user.result)
-        setId(user.result._id)
+
+        setAccountData(user.result);
+
+        setId(user.result._id);
     }, [location]);
 
     return (

@@ -68,7 +68,7 @@ export default function DirectorSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to={`/account/${user.result.role}/${user.result._id}`}
+                  to={`/account/${user.result._id}`}
                 >
                   <i className="fas fa-tools mr-2 text-sm " />
                   Update Details

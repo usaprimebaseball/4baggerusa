@@ -111,7 +111,7 @@ const Admin = () => {
     return(
         <div className="userForm">
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -143,7 +143,7 @@ const Admin = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -177,7 +177,7 @@ const Admin = () => {
             </div>
                     
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -211,7 +211,7 @@ const Admin = () => {
                   </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -247,7 +247,7 @@ const Admin = () => {
             </div>
 
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -295,7 +295,7 @@ const Admin = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"

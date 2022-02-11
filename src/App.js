@@ -13,6 +13,8 @@ import AboutUs from "views/AboutUs";
 import ContactUs from "views/ContactUs";
 import Rules from "views/Rules";
 import Index from "views/Index";
+import EventsMainPage from "views/events/EventsMainPage";
+import Tournaments from "views/events/tournaments/Tournaments"
 
 const App = () => {
     return (
@@ -25,6 +27,7 @@ const App = () => {
                 <Route path="/aboutus" component={AboutUs} />
                 <Route path="/contactus" component={ContactUs} />
                 <Route path="/rules" component={Rules} />
+                <Route path="/Events" component={EventsMainPage} />
                 <Route path="/" exact component={Index} />
                 {/* add redirect for first page */}
                 <Redirect from="*" to="/" />

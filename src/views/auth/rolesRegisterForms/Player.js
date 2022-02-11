@@ -253,7 +253,7 @@ const Player = () => {
             </div>
                     
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -285,7 +285,7 @@ const Player = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -319,7 +319,7 @@ const Player = () => {
             </div>
                     
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -353,7 +353,7 @@ const Player = () => {
                   </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -552,9 +552,9 @@ const Player = () => {
                 </div>
             </div>
             <hr/><br/>
-            <div className="relative col-12 mb-3">
+            <div className="w-full mb-3">
                 <label
-                    className="block uppercase text-white text-sm font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                 >
                     Date of Birth <span style={{color:'red'}}>*</span>
@@ -584,7 +584,7 @@ const Player = () => {
                 </div>
             </div>
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -616,7 +616,7 @@ const Player = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -650,7 +650,7 @@ const Player = () => {
             </div>
 
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -682,7 +682,7 @@ const Player = () => {
                     </div>
                 </div>  
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -717,7 +717,7 @@ const Player = () => {
             <hr/><br/>
             
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -752,7 +752,7 @@ const Player = () => {
                     </div>
                 </div>  
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -789,7 +789,7 @@ const Player = () => {
             </div>
             
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -828,7 +828,7 @@ const Player = () => {
                             : ""}
                     </div>
                 </div>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
@@ -873,7 +873,7 @@ const Player = () => {
 
             <span className="uppercase text-info font-bold">parent info: <span style={{color:'red'}}>*</span></span><br/><br/>
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -905,7 +905,7 @@ const Player = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -939,7 +939,7 @@ const Player = () => {
             </div>
                     
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -973,7 +973,7 @@ const Player = () => {
                   </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -1009,7 +1009,7 @@ const Player = () => {
             <span className="uppercase text-info font-bold">set your password: <span style={{color:'red'}}>*</span></span><br/><br/>
 
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -1057,7 +1057,7 @@ const Player = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -1153,7 +1153,7 @@ const Player = () => {
         </div>:""}
         <div className="text-center mt-6">
             <button
-                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-success text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={register}
             >

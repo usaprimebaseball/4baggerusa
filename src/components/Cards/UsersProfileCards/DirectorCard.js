@@ -144,7 +144,7 @@ const DirectorCard = () => {
             setAccountData({...accountData, fieldComplexCity: ""});
             setAccountData({...accountData, fieldComplexState: ""});
             setAccountData({...accountData, active: user.result.active});
-            dispatch(updateuser(user.result.role, id, accountData));
+            dispatch(updateuser(id, accountData));
             setIsUpdated(true);
 
         }
@@ -152,8 +152,10 @@ const DirectorCard = () => {
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('profile')));
-        setAccountData(user.result)
-        setId(user.result._id)
+
+        setAccountData(user.result);
+        
+        setId(user.result._id);
     }, [location]);
 
 
@@ -168,7 +170,7 @@ const DirectorCard = () => {
                     <h2><span className='text-success font-bold'>SUCCESS</span>: Updated Successfully!</h2>
                 </div>:""}
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              Director Information
+            Tournament Director Information
             </h6>
             <div className="flex flex-wrap">
                 

@@ -38,7 +38,7 @@ const IndexDropdown = () => {
         }
       >
         <Link
-          to="/admin/dashboard"
+          to="/Events"
           className="hover:text-blueGray-300 text-blueGray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
         >
           Events / Tournaments

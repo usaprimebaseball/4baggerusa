@@ -148,7 +148,7 @@ const Other = () => {
                     </div>
             </div>
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -180,7 +180,7 @@ const Other = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -214,7 +214,7 @@ const Other = () => {
             </div>
                     
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -248,7 +248,7 @@ const Other = () => {
                   </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -284,7 +284,7 @@ const Other = () => {
             </div>
 
             <div className='row'>
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -332,7 +332,7 @@ const Other = () => {
                     </div>
                 </div>
 
-                <div className="relative col-md-6 col-xs-12 mb-3">
+                <div className="relative col-md-6 col-sm-6col-xs-12 mb-3">
                     <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -414,7 +414,7 @@ const Other = () => {
               </div>:""}
         <div className="text-center mt-6">
             <button
-                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-success text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={register}
             >
