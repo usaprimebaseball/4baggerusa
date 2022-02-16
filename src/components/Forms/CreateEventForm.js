@@ -8,7 +8,7 @@ import FileBase from 'react-file-base64';
 
 
 const initialState = {
-    eventImage: "", createdBy: "", live: false, eventName: "", startDate: "", endDate: "", costPerTeam: "", ageGroup: "", maxTeamsNum: "", fieldComplexName: "",
+    eventImage: "", createdBy: "", live: false, eventName: "", startDate: "", endDate: "", costPerTeam: "", gateFee: "", entryFee: "", ageGroup: "", maxTeamsNum: "", fieldComplexName: "",
     fieldComplexStreet: "", fieldComplexState: "", fieldComplexCity: "", fieldComplexZipcode: "", gameFormat: ""
 };
 
@@ -77,6 +77,14 @@ const CreateEventForm = () => {
                 value: accountData.gameFormat,
                 isRequired: true,
             },
+            gateFee: {
+                value: accountData.gateFee,
+                isRequired: true,
+            },
+            entryFee: {
+                value: accountData.entryFee,
+                isRequired: true,
+            },
         });
 
 
@@ -113,6 +121,9 @@ const CreateEventForm = () => {
             setAccountData({...accountData, ageGroup: ""});
             setAccountData({...accountData, costPerTeam: ""});
             setAccountData({...accountData, gameFormat: ""});
+            setAccountData({...accountData, entryFee: ""});
+            setAccountData({...accountData, gateFee: ""});
+
 
             window.scroll(0,0);
             setIsCreated(true);
@@ -301,6 +312,72 @@ const CreateEventForm = () => {
                         >
                             {validate.validate && validate.validate.costPerTeam
                             ? validate.validate.costPerTeam[0]
+                            : ""}
+                        </div>
+                    </div>
+
+                    <div className="relative col-md-4 col-xs-12 mb-3">
+                        <label
+                            className="block uppercase  text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                        >
+                            Entry Fee <span style={{color:'red'}}>*</span>
+                        </label>
+                        <input
+                            type="text"
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            validate.validate && validate.validate.entryFee
+                                ? "is-invalid "
+                                : ""
+                            }`}
+                            id="entryFee"
+                            value={accountData.entryFee}
+                            placeholder="Cost per team"
+                            onChange={(e) =>setAccountData({...accountData, entryFee: e.target.value})}
+                        />
+
+                        <div
+                            className={`invalid-feedback text-start ${
+                            validate.validate && validate.validate.entryFee
+                                ? "d-block"
+                                : "d-none"
+                            }`}
+                        >
+                            {validate.validate && validate.validate.entryFee
+                            ? validate.validate.entryFee[0]
+                            : ""}
+                        </div>
+                    </div>
+
+                    <div className="relative col-md-4 col-xs-12 mb-3">
+                        <label
+                            className="block uppercase  text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                        >
+                            Gate Fee <span style={{color:'red'}}>*</span>
+                        </label>
+                        <input
+                            type="text"
+                            className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
+                            validate.validate && validate.validate.gateFee
+                                ? "is-invalid "
+                                : ""
+                            }`}
+                            id="gateFee"
+                            value={accountData.gateFee}
+                            placeholder="Cost per team"
+                            onChange={(e) =>setAccountData({...accountData, gateFee: e.target.value})}
+                        />
+
+                        <div
+                            className={`invalid-feedback text-start ${
+                            validate.validate && validate.validate.gateFee
+                                ? "d-block"
+                                : "d-none"
+                            }`}
+                        >
+                            {validate.validate && validate.validate.gateFee
+                            ? validate.validate.gateFee[0]
                             : ""}
                         </div>
                     </div>

@@ -14,7 +14,6 @@ import ContactUs from "views/ContactUs";
 import Rules from "views/Rules";
 import Index from "views/Index";
 import EventsMainPage from "views/events/EventsMainPage";
-import Tournaments from "views/events/tournaments/Tournaments"
 
 const App = () => {
     return (
