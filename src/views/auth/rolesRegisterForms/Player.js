@@ -566,7 +566,7 @@ const Player = () => {
                         ? "is-invalid "
                         : ""
                     }`}
-                    value={accountData.dob}
+                    value={accountData.dob.slice(0, 10)}
                     placeholder="Last Name"
                     onChange={(e) => setAccountData({...accountData, dob: e.target.value})}
                 />

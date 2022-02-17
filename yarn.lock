@@ -14055,6 +14055,11 @@ rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-acceptjs@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-acceptjs/-/react-acceptjs-0.2.0.tgz#bb0ed6898edfcec108613650ca3e109576f501e4"
+  integrity sha512-/N6bA4ji0tTeekyIvLpATk/W8XZ1iVD6GezkN6va4Zlyhu9Txn6SWTXhwW134wKL/09mln6n7VHpr+RyTQwyrg==
+
 react-app-polyfill@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-app-polyfill/-/react-app-polyfill-2.0.0.tgz#a0bea50f078b8a082970a9d853dc34b6dcc6a3cf"

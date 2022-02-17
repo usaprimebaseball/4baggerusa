@@ -6,7 +6,7 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import ModalTitle from "react-bootstrap/ModalTitle";
 
-const UpdateActivityModal = ({active, show, setShowModal, user, history}) => {
+const UpdateActivityModal = ({ show, setShowModal, user, history }) => {
     const dispatch = useDispatch();
 
     return (

@@ -352,6 +352,7 @@ const PlayerCard = () => {
                     High School Name
                     </label>
                     <input
+                        placeholder='High School'
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         defaultValue={user.result.highSchoolName}
@@ -376,17 +377,17 @@ const PlayerCard = () => {
                         className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
-                        Date of Birth <span style={{color:'red'}}>*</span>
+                        Date of Birth: <span style={{color:'red'}}></span>
                     </label>
                     <input
-                    type="date"
+                    type="text"
                         className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                             validate.validate && validate.validate.dob
                             ? "is-invalid "
                             : ""
                         }`}
-                        value={accountData.dob}
-                        placeholder="Last Name"
+                        defaultValue={accountData.dob}
+                        placeholder="D.O.B."
                         onChange={(e) => setAccountData({...accountData, dob: e.target.value})}
                     />
 
@@ -436,10 +437,11 @@ const PlayerCard = () => {
                         className="block uppercase text-blueGray-600 text-sm font-bold mb-2"
                         htmlFor="grid-password"
                     >
-                    collegeCommitment
+                    College Commitment
                     </label>
                     <input
                         type="text"
+                        placeholder='College Commitment'
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         defaultValue={user.result.collegeCommitment}
                         onChange={(e) => setAccountData({...accountData, collegeCommitment: e.target.value})}

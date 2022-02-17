@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Ticker from 'react-ticker'
@@ -14,6 +14,11 @@ export default function Tournaments() {
     const events = useSelector((state) => state.events);
     const location = useLocation();
     const dispatch = useDispatch();   
+    const history = useHistory();
+
+    const back = () => {
+        history.push(`/Events`)
+    };
 
     useEffect(() => {
         dispatch(getevents());
@@ -24,6 +29,13 @@ export default function Tournaments() {
         {events.length > 0 ? 
         <section className="header relative" style={{padding: "90px"}}>
             <div className="mx-auto" style={{paddingTop:"90px", paddingBottom:"30px"}}> 
+                 <button
+                    className="btn-lg btn-warning mb-1"
+                    type="button"
+                    onClick={back}
+                    >
+                    Back
+                </button>
                 <div className="text-white text-xl font-bold col-12 bg-black p-3 rounded text-center">
                     <Ticker>
                         {({  }) => (
