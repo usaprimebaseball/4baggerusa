@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Form from "utilities/Forms";
-import { adminsignup } from 'actions/auth';
+import { usersignup } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -89,7 +89,7 @@ const Admin = () => {
             setAccountData({...accountData, phoneNumber: ""});
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
-            dispatch(adminsignup(accountData, history));
+            dispatch(usersignup(accountData, history));
         }
     };
 

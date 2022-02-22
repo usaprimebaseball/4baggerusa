@@ -9,6 +9,9 @@ const usersReducer = (users = [], action) => {
       return users.map((user) => (user._id === action.payload._id ? user : user));
       case actionType.ACTIVITY:
         return users.map((user) => (user._id === action.payload._id ? action.payload : user));
+      case actionType.UPDATE:
+        localStorage.setItem('profile', JSON.stringify({ ...action?.payload }));
+        return users.map((user) => (user._id === action.payload._id ? action.payload : user));
     default:
       return users;
   }

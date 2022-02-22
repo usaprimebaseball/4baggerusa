@@ -13,7 +13,7 @@ import { Tooltip } from '@material-ui/core';
 
 const initialState = {
     active: "", role: "player", profileImage: "", firstName: "", lastName: "", email: "", phoneNumber: "", highSchoolName: "",
-    street: "", city: "", state: "", zipcode: "", dob: new Date(), gradYear: "", collegeCommitment: "",
+    street: "", city: "", state: "", zipcode: "", dob: "", gradYear: "", collegeCommitment: "",
     height: "", weight: "",pThrow: "", bat: "", primPosition: "", seconPosition: "", parentFirst: "", parentLast: "", 
     parentEmail: "", parentPhone: ""
 };
@@ -381,16 +381,22 @@ const PlayerCard = () => {
                     </label>
                     <input
                     type="text"
+                        className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150}`}
+                        defaultValue={accountData.dob.slice(0, 10)}
+                        readOnly
+                    />
+                    <br/>
+                    <input
+                    type="date"
                         className={`form-control border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ${
                             validate.validate && validate.validate.dob
                             ? "is-invalid "
                             : ""
                         }`}
-                        defaultValue={accountData.dob}
-                        placeholder="D.O.B."
+                        value={accountData.dob}
                         onChange={(e) => setAccountData({...accountData, dob: e.target.value})}
                     />
-
+                    
                     <div
                     className={`invalid-feedback text-start ${
                         validate.validate && validate.validate.dob
@@ -498,17 +504,17 @@ const PlayerCard = () => {
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         defaultValue={user.result.weight}
-                        onChange={(e) => setAccountData({...accountData, Weight: e.target.value})}
+                        onChange={(e) => setAccountData({...accountData, weight: e.target.value})}
                     />
                     <div
                         className={`invalid-feedback text-start ${
-                            validate.validate && validate.validate.Weight
+                            validate.validate && validate.validate.weight
                             ? "d-block"
                             : "d-none"
                         }`}
                         >
-                        {validate.validate && validate.validate.Weight
-                            ? validate.validate.Weight[0]
+                        {validate.validate && validate.validate.weight
+                            ? validate.validate.weight[0]
                             : ""}
                         </div>
                     </div>

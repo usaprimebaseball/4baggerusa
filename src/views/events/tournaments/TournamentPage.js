@@ -6,6 +6,7 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Loading from "views/LoadingPage";
 import background from "assets/img/tbg2.jpg";
 import EnrollAlertModal from "components/Modals/SignInEnrollModal";
+import { Tooltip } from "@material-ui/core";
 
 export default function TournamentPage() {
     window.scrollTo(0, 0);
@@ -18,7 +19,11 @@ export default function TournamentPage() {
 
     const back = () => {
         history.push(`/Events/tournaments`)
-      };
+    };
+    
+    const goToCheckout = () => {
+        history.push(`/Events/tournaments/${event.eventName}/checkout`)
+    };
 
       useEffect(() => {
 
@@ -61,14 +66,26 @@ export default function TournamentPage() {
                     <div className="row col-md-7 alert alert-primary font-bold">
                     <i className="fa fa-money-check mr-1"></i><h3>Gate Fee: ${event.gateFee}</h3>
                     </div> 
-                    {user?.result.role === "team" ? 
+                    {user?.result.role === "team" && !user?.result.active? 
+                    <Tooltip title="Your account needs to be activated to enroll.
+                    Please contact support.">
+                    <button
+                    className="col-md-8 btn-lg btn-success"
+                    type="button"                    
+                    >
+                    Enroll 
+                    </button>
+                    </Tooltip>
+                    :
+                    user?.result.role === "team" ? 
                     <button
                     className="col-md-8 btn-lg btn-success"
                     type="button"
-                    onClick={""}
+                    onClick={() => goToCheckout()}
                     >
                     Enroll
-                    </button>:
+                    </button>
+                    :
                     <button
                         onClick={() => setShowModal(true)}
                         className="col-md-8 btn-lg btn-success"

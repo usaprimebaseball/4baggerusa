@@ -40,11 +40,21 @@ export default function Account() {
         <AdminNavbar />
         {/* Header */}
         <Switch>
-          <Route exact path={`/account/admin/users`} component={UserActivity} />
-          {selectedUser? <Route exact path={`/account/users/${selectedUser.firstName}`} component={SelectedUserDetails} /> : ""}
-          <Route exact path={`/account/${user.result._id}/createtournament`} component={CreateEvent} />
-          <Route exact path={`/account/${user?.result.role === 'admin' ? "admin/":""}${user.result._id}`} component={UserDetails} />
-          <Route exact path={`/account/${user?.result.role === 'admin' ? "admin/":""}`} component={UserDetails} />
+          {user?.result.role === "admin" ? 
+          <>
+            <Route exact path={`/account/admin/users`} component={UserActivity} />
+            <Route exact path={`/account/admin/${user.result._id}`} component={UserDetails} />
+            <Route exact path={`/account/admin`} component={UserDetails} />
+            {selectedUser? <Route exact path={`/account/users/${selectedUser.firstName}`} component={SelectedUserDetails} /> : ""}
+          </>
+          :
+          <>
+            <Route exact path={`/account/${user.result._id}/createtournament`} component={CreateEvent} />
+            <Route exact path={`/account/${user?.result.role === 'admin' ? "admin/":""}${user.result._id}`} component={UserDetails} />
+            <Route exact path={`/account/${user?.result.role === 'admin' ? "admin/":""}`} component={UserDetails} />
+          </>
+          }
+          
         </Switch>
       <FooterAdmin />
       </div>

@@ -3,8 +3,6 @@ import { createPopper } from "@popperjs/core";
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import decode from 'jwt-decode';
-
 import * as actionType from '../../constants/actionTypes';
 const UserDropdown = () => {
   // dropdown props
@@ -67,7 +65,7 @@ const UserDropdown = () => {
         }
       >
         <Link
-          to={`/account/${user.result.role === "admin" ? "admin/":""}${user.result._id}`}
+          to={`/account/${user?.result.role === "admin" ? "admin/":""}${user?.result._id}`}
           className="text-info hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-sm uppercase font-bold text-lightBlue"
         >
           <i className="fas fa-tachometer-alt"></i>&nbsp;

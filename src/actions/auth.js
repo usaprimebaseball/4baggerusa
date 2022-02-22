@@ -32,13 +32,17 @@ export const adminsignin = (formData, router) => async (dispatch) => {
   }
 };
 
-export const directorsignup = (formData, router) => async (dispatch) => {
+export const usersignup = (formData, router) => async (dispatch) => {
   try {
-    const { data } = await api.directorSignUp(formData);
+    const { data } = await api.userSignUp(formData);
 
     dispatch({ type: AUTH, data });
 
-    router.push(`/account/${data.result._id}`);
+    if (data.role === "admin") {
+      router.push(`/account/admin/${data.result._id}`);
+    } else {
+      router.push(`/account/${data.result._id}`);
+    }
     window.scroll(0,0);
     dispatch({ type: CLEAR_ERROR });
 
@@ -49,73 +53,5 @@ export const directorsignup = (formData, router) => async (dispatch) => {
   }
 };
 
-
-export const playersignup = (formData, router) => async (dispatch) => {
-  try {
-    const { data } = await api.playerSignUp(formData);
-
-    dispatch({ type: AUTH, data });
-
-    router.push(`/account/${data.result._id}`);
-    window.scroll(0,0);
-    dispatch({ type: CLEAR_ERROR });
-
-  } catch (error) {
-    await api.createError(error.response.data);
-
-    dispatch({ type: ADD_ERROR, payload: error.response.data.message})  
-  }
-};
-
-export const teamsignup = (formData, router) => async (dispatch) => {
-  try {
-    const { data } = await api.teamSignUp(formData);
-
-    dispatch({ type: AUTH, data });
-
-    router.push(`/account/${data.result._id}`);
-    window.scroll(0,0);
-    dispatch({ type: CLEAR_ERROR });
-
-  } catch (error) {
-    await api.createError(error.response.data);
-
-    dispatch({ type: ADD_ERROR, payload: error.response.data.message})
-  }
-};
-
-export const othersignup = (formData, router) => async (dispatch) => {
-  try {
-    const { data } = await api.otherSignUp(formData);
-
-    dispatch({ type: AUTH, data });
-
-    router.push(`/account/${data.result._id}`);
-    window.scroll(0,0);
-    dispatch({ type: CLEAR_ERROR });
-
-  } catch (error) {
-    await api.createError(error.response.data);
-
-    dispatch({ type: ADD_ERROR, payload: error.response.data.message})
-  }
-};
-
-export const adminsignup = (formData, router) => async (dispatch) => {
-  try {
-    const { data } = await api.adminSignUp(formData);
-
-    dispatch({ type: AUTH, data });
-
-    router.push(`/account/${data.result._id}`);
-    window.scroll(0,0);
-    dispatch({ type: CLEAR_ERROR });
-
-  } catch (error) {
-    await api.createError(error.response.data);
-
-    dispatch({ type: ADD_ERROR, payload: error.response.data.message})  
-  }
-};
 
 

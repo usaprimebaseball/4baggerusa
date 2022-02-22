@@ -14,6 +14,7 @@ import ContactUs from "views/ContactUs";
 import Rules from "views/Rules";
 import Index from "views/Index";
 import EventsMainPage from "views/events/EventsMainPage";
+import Checkout from "components/Forms/CheckoutForm";
 
 const App = () => {
     return (
@@ -22,6 +23,8 @@ const App = () => {
                 {/* add routes with layouts */}
                 <Route path="/account" component={Account} />
                 <Route path="/auth" component={Auth} />
+                <Route exact path={`/Events/tournaments/:eventName/checkout`} component={Checkout} />
+
                 {/* add routes without layouts */}
                 <Route path="/aboutus" component={AboutUs} />
                 <Route path="/contactus" component={ContactUs} />

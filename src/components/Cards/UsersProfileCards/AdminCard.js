@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Form from "utilities/Forms";
-import { updateadmin } from 'actions/user';
+import { updateuser } from 'actions/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from '@material-ui/core';
 // components
@@ -10,7 +10,6 @@ import { Tooltip } from '@material-ui/core';
 const initialState = {
     role: "admin", firstName: "", lastName: "", email: "", phoneNumber: ""
 };
-
 
 const AdminCard = () => {
   const [accountData, setAccountData] = useState(initialState);
@@ -74,7 +73,7 @@ const AdminCard = () => {
             setAccountData({...accountData, lastName: ""});
             setAccountData({...accountData, email: ""});
             setAccountData({...accountData, phoneNumber: ""});
-            dispatch(updateadmin(id, accountData));
+            dispatch(updateuser(id, accountData));
             setIsUpdated(true);
         }
     };

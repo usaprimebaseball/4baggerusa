@@ -15,12 +15,9 @@ export default function Register() {
     setRoleValue(e.target.value);  
   };
 
-
-
-
   return (
     <>
-      <div className="container mx-auto px-4 h-full">
+      <div className="container mx-auto px-4 h-full" style={{paddingTop:"55px"}}>
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-6/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">

@@ -42,23 +42,7 @@ export const getuser = (id, router) => async (dispatch) => {
 
       dispatch({ type: UPDATE, payload: data });
 
-      setInterval(await window.location.reload(), 20000);
-
-      dispatch({ type: CLEAR_ERROR });
-    } catch (error) {
-      await api.createError(error.response.data);
-
-      dispatch({ type: ADD_ERROR, payload: error.response.data.message});
-    }
-  };
-
-  export const updateadmin = (id, userInfo) => async (dispatch) => {
-    try {
-      const { data } = await api.updateAdmin(id, userInfo);
-
-      dispatch({ type: UPDATE, payload: data });
-
-      setInterval(await window.location.reload(), 20000);
+      // setInterval(await window.location.reload(), 20000);
 
       dispatch({ type: CLEAR_ERROR });
     } catch (error) {
