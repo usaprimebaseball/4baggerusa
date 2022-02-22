@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Form from "utilities/Forms";
-import { usersignup } from 'actions/auth';
+import { othersignup } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -95,7 +95,7 @@ const Other = () => {
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
 
-            dispatch(usersignup(accountData, history));
+            dispatch(othersignup(accountData, history));
         }
     };
 

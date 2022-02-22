@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FileBase from 'react-file-base64';
 import states from 'json/states';
 import Form from "utilities/Forms";
-import { usersignup } from 'actions/auth';
+import { playersignup } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -197,7 +197,7 @@ const Player = () => {
             setAccountData({...accountData, passwordConfirm: ""});
             setAccountData({...accountData, agreeBtn: ""});
             
-            dispatch(usersignup(accountData, history));
+            dispatch(playersignup(accountData, history));
             
         }
     };

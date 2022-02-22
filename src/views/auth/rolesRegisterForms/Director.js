@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import states from 'json/states';
 import Form from "utilities/Forms";
-import { usersignup } from 'actions/auth';
+import { directorsignup } from 'actions/auth';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -186,7 +186,7 @@ const Director = () => {
             setAccountData({...accountData, password: ""});
             setAccountData({...accountData, passwordConfirm: ""});
 
-            dispatch(usersignup(accountData, history));
+            dispatch(directorsignup(accountData, history));
         }
     };
 

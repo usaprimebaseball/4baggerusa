@@ -21,7 +21,11 @@ export const createTeamInvoice = (formData) => API.post('/account/invoices', for
 export const getInvoices = () => API.get(`/account/invoices`);
 export const getInvoice = (id) => API.get(`/account/invoices/${id}`);
 
-export const userSignUp = (formData) => API.post('/signup', formData);
+export const directorSignUp = (formData) => API.post('/dir_signup', formData);
+export const playerSignUp = (formData) => API.post('/player_signup', formData);
+export const teamSignUp = (formData) => API.post('/team_signup', formData);
+export const otherSignUp = (formData) => API.post('/other_signup', formData);
+export const adminSignUp = (formData) => API.post('/admin_signup', formData);
 
 export const updateUser = (id, updatedUser) => API.patch(`/account/${id}`, updatedUser);
 
