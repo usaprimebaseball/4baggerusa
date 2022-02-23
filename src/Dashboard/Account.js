@@ -12,12 +12,16 @@ import AdminSidebar from 'components/Sidebar/AdminSidebar';
 import UserActivity from 'components/Cards/userActionsCards/AdminActions/UserActivity';
 import CreateEvent from 'components/Cards/userActionsCards/DirectorActions/CreateEvent';
 import DirectorSidebar from 'components/Sidebar/DirectorSidebar';
+import Invoices from 'components/Cards/userActionsCards/AdminActions/Invoices';
+import SelectedInvoicePage from 'dashboard/SelectedInvoicePage';
 
 // views
 
 export default function Account() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [selectedUser, setSelectedUser] = useState(JSON.parse(localStorage.getItem('selectedUser')));
+  const invoice = JSON.parse(localStorage.getItem('invoice'));
+
   const location = useLocation();
   const history = useHistory();
 
@@ -43,6 +47,8 @@ export default function Account() {
           {user?.result.role === "admin" ? 
           <>
             <Route exact path={`/account/admin/users`} component={UserActivity} />
+            <Route exact path={`/account/admin/invoices`} component={Invoices} />
+            {invoice? <Route exact path={`/account/admin/invoices/${invoice._id}`} component={SelectedInvoicePage} /> : ""}
             <Route exact path={`/account/admin/${user.result._id}`} component={UserDetails} />
             <Route exact path={`/account/admin`} component={UserDetails} />
             {selectedUser? <Route exact path={`/account/users/${selectedUser.firstName}`} component={SelectedUserDetails} /> : ""}

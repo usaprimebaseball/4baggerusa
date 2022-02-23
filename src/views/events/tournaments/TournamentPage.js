@@ -20,6 +20,10 @@ export default function TournamentPage() {
     const back = () => {
         history.push(`/Events/tournaments`)
     };
+
+    const showTeams = () => {
+        history.push(`/Events/tournaments/${event.eventName}/teams`)
+    };
     
     const goToCheckout = () => {
         history.push(`/Events/tournaments/${event.eventName}/checkout`)
@@ -57,8 +61,12 @@ export default function TournamentPage() {
                         {event.fieldComplexName} - {event.fieldComplexCity}, {event.fieldComplexState}
                         </div>
                     </div>
+                    
                     <div className="mt-5 row col-md-7 alert alert-primary font-bold">
                     <i class="fa fa-baseball-ball mr-1"></i><h3>Game Format: {event.gameFormat}</h3>
+                    </div>
+                    <div className="row col-md-7 alert alert-primary font-bold">
+                    <i className="fa fa-money-bill mr-1"></i><h3>Cost Per Team: ${event.costPerTeam}</h3>
                     </div>
                     <div className="row col-md-7 alert alert-primary font-bold">
                     <i className="fa fa-money-bill mr-1"></i><h3>Entry Fee: ${event.entryFee}</h3>
@@ -94,6 +102,15 @@ export default function TournamentPage() {
                         Enroll
                     </button>
                     }         
+                    {event.teamsCount > 0 ? 
+                        <button
+                            onClick={() => showTeams()}
+                            className="col-md-8 btn-lg btn-warning mt-1"
+                            type="button"
+                            >
+                            Show Enrolled Teams
+                        </button>:""
+                    }
                 </div>
             </div>
         </section>

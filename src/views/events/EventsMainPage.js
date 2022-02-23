@@ -5,6 +5,7 @@ import Footer from "components/Footers/Footer.js";
 import { Switch, Route, Link } from 'react-router-dom';
 import Tournaments from "./tournaments/Tournaments";
 import TournamentPage from "./tournaments/TournamentPage";
+import TeamsPage from "./tournaments/TeamsPage";
 
 export default function EventsMainPage() {
   const tournament = JSON.parse(localStorage.getItem('event'));
@@ -17,7 +18,10 @@ export default function EventsMainPage() {
       <Switch>
         <Route exact path={`/Events/tournaments`} component={Tournaments} />
         {tournament ?
-        <Route exact path={`/Events/tournaments/${tournament.eventName}`} component={TournamentPage} />
+        <>
+          <Route exact path={`/Events/tournaments/${tournament.eventName}`} component={TournamentPage} />
+          <Route exact path={`/Events/tournaments/${tournament.eventName}/teams`} component={TeamsPage} />
+        </>
         :""}
         <section className="header relative py-20  overflow-hidden" >
           <div className="container mx-auto pb-40" style={{paddingTop:"40px"}}>

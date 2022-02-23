@@ -26,7 +26,7 @@ export default function Tournaments() {
     return (
         <>
         <IndexNavbar fixed />
-        {events.length > 0 ? 
+    {events.length > 0 ? 
         <section className="header relative" style={{padding: "90px"}}>
             <div className="mx-auto" style={{paddingTop:"90px", paddingBottom:"30px"}}> 
                  <button

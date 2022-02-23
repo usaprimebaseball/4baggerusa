@@ -15,6 +15,7 @@ import Rules from "views/Rules";
 import Index from "views/Index";
 import EventsMainPage from "views/events/EventsMainPage";
 import Checkout from "components/Forms/CheckoutForm";
+import EnrollmentInvoicePage from "views/events/EnrollmentInvoicePage";
 
 const App = () => {
     return (
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path="/account" component={Account} />
                 <Route path="/auth" component={Auth} />
                 <Route exact path={`/Events/tournaments/:eventName/checkout`} component={Checkout} />
+                <Route exact path={`/Events/tournaments/:eventName/invoice`} component={EnrollmentInvoicePage} />
 
                 {/* add routes without layouts */}
                 <Route path="/aboutus" component={AboutUs} />

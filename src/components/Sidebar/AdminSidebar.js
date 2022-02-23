@@ -86,6 +86,19 @@ export default function DirectorSidebar() {
                   <i className="fas mr-2 text-info fa-users" />
                   Users
                 </Link>
+
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/maps") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to={`/account/admin/invoices`}
+                >
+                  <i class="fas text-info mr-2 fa-receipt"></i>
+                  Invoices
+                </Link>
             </ul>
 
             {/* Divider */}

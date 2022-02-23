@@ -9,6 +9,8 @@ const eventsReducer = (events = [], action) => {
     case actionType.FETCH_ONE_EVENT:
       localStorage.setItem('event', JSON.stringify({ ...action?.payload }));
       return events.map((event) => (event._id === action.payload._id ? event : events));
+    case actionType.UPDATE_EVENT_TEAMS:
+        return events.map((event) => (event._id === action.payload._id ? action.payload : event));
     default:
       return events;
   }

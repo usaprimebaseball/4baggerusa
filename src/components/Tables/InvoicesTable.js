@@ -4,7 +4,6 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import { getinvoices } from "actions/invoice";
 import PropTypes from "prop-types";
-import GoBack from "views/GoBackPage";
 import { getinvoice } from "actions/invoice";
 
 // components
@@ -26,7 +25,7 @@ export default function InvoicesTable({ color }) {
   return (
     <>
       <div
-        style={{marginBottom: users.length === 0 ?"122px":"0"}}
+        style={{marginBottom: invoices?.length === 0 ?"122px":"0"}}
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
           (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
@@ -69,7 +68,17 @@ export default function InvoicesTable({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Role
+                  Created At
+                </th>
+                <th
+                  className={
+                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    (color === "light"
+                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                  }
+                >
+                  Tournament Name
                 </th>
                 <th
                   className={
@@ -98,33 +107,36 @@ export default function InvoicesTable({ color }) {
                 <tr>
                   <th>
                     <button type="button" onClick={() => handleClick(invoice)} className="btn-outline-info border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                        <Avatar className="bg-danger font-bold">{invoice.firstName.charAt(0)}</Avatar>:<Avatar className="bg-danger font-bold"></Avatar>
+                        <Avatar className="bg-danger font-bold">{invoice?.firstName.charAt(0)}</Avatar>
                         <span
                           className={
                             "ml-3 font-bold " +
                             +(color === "light" ? "text-blueGray-600" : "text-white")
                           }
                         >
-                            {invoice.role === "team" ? invoice.firstName + " " + invoice.lastName + " / " + invoice.teamName:invoice.firstName + " " + invoice.lastName}
+                            { invoice.firstName + " " + invoice.lastName }
 
                         </span>
                       </button>
                   </th>
                   <td className="uppercase border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                    {invoice.role === "team" ? "Head Coach / Team": invoice.role}
+                    {invoice.createdAt.slice(0, 10)}
+                  </td>
+                  <td className="uppercase border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {invoice.tournamentName}
                   </td>
                   <td className="uppercase border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                     {invoice.email}
                   </td>
                   <td className="border-t-0  align-middle border-l-0 border-r-0 text-xs whitespace-nowrap ">
                     <button  onClick={() => handleClick(invoice)} className="btn btn-primary" variant="contained">
-                      View Details / Manage Activation
+                      View Invoice Details
                     </button>
                   </td>
                 </tr>
                 
               </tbody> 
-              )):<GoBack />}
+              )):""}
           </table>
         </div>
       </div>

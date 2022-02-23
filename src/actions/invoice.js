@@ -2,18 +2,20 @@ import { CREATE, FETCH_ALL, ADD_ERROR, CLEAR_ERROR, FETCH_ONE_INVOICE} from '../
 import * as api from '../api/index.js';
 
 // Create event
-export const createteaminvoice = (formData) => async (dispatch) => {
+export const createteaminvoice = (formData, router) => async (dispatch) => {
     try {
       const { data } = await api.createTeamInvoice(formData);
   
       dispatch({ type: CREATE, payload: data });
       dispatch({ type: CLEAR_ERROR });
 
-    } catch (error) {
-      await api.createError(error.response.data ? error.response.data : error.response.textStatus);
+      localStorage.setItem('invoice', JSON.stringify({ ...data }));
+      router.push(`/Events/tournaments/:eventName/invoice`)
 
-      dispatch({ type: ADD_ERROR, payload: error.response.data? error.response.data.message : error.response.textStatus}) 
-      console.log(error.response)
+    } catch (error) {
+      await api.createError(error.response.data);
+
+      dispatch({ type: ADD_ERROR, payload: error.response.data.message});
 
     }
   };
@@ -35,9 +37,10 @@ export const getinvoice = (id, router) => async (dispatch) => {
   try {
     const { data } = await api.getInvoice(id);
 
+    router.push(`/account/admin/invoices/${id}`)
+    
     dispatch({ type: FETCH_ONE_INVOICE, payload: data });
-    router.push(`/account/admin/invoice`);
-
+    
     dispatch({ type: CLEAR_ERROR });
 
   } catch (error) {

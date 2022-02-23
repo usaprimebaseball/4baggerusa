@@ -5,6 +5,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from "assets/img/logo.png";
 import { createteaminvoice } from "actions/invoice";
+import { updateevent } from "actions/event";
+import { updateuser } from "actions/user";
 
 const initialState = {
     email: "", firstName: "", lastName: "", teamName: "", tournamentName: "", cardLastFour: "", billingSt: "", billingCity: "", billingState: "", billingZipcode: "", gateFee: "", entryFee: "", totalFee: ""
@@ -91,7 +93,9 @@ export default function Checkout() {
         e.preventDefault();
         const validate = validateForm();
         
+        const teamsCount =  event.teamsCount < event.maxTeamsNum ?  event.teamsCount + 1 : event.teamsCount;
 
+        
         if (validate) {
             setValidate({});
 
@@ -103,22 +107,25 @@ export default function Checkout() {
             setPaymentData({...paymentData, billingCity: ""});
             setPaymentData({...paymentData, billingZipcode: ""});
 
-            dispatch(createteaminvoice(accountData));
-            console.log(accountData);
+            // Add invoice
+            dispatch(createteaminvoice(accountData, history));
 
+            // Add the team to the tournament
+            dispatch(updateevent(event._id, { ...event, teams: [...event.teams, user?.result], teamsCount: teamsCount}));
+
+            // Update team enrollment
+            dispatch(updateuser(user?.result._id, { ...user?.result, enrolled: event }));
         }
-
-
     };
 
     useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('profile')));
-    
-    setAccountData({ ...accountData, email : user?.result.email, gateFee: event.gateFee, entryFee: event.entryFee, totalFee: event.entryFee + event.gateFee,
-        firstName: user?.result.firstName, lastName: user?.result.lastName, tournamentName: event.eventName, teamName: user?.result.teamName
-    });
+        setUser(JSON.parse(localStorage.getItem('profile')));
+        
+        setAccountData({ ...accountData, email : user?.result.email, gateFee: event.gateFee, entryFee: event.entryFee, totalFee: event.entryFee + event.gateFee + event.costPerTeam,
+            firstName: user?.result.firstName, lastName: user?.result.lastName, tournamentName: event.eventName, teamName: user?.result.teamName 
+        });
 
-    setPaymentData({ ...paymentData, totalFee: event.entryFee + event.gateFee });
+        setPaymentData({ ...paymentData, totalFee: event.entryFee + event.gateFee });
 
     }, [location])
 
@@ -297,6 +304,12 @@ export default function Checkout() {
                                             className="block uppercase mt-2 text-blueGray-600 text-sm font-bold mb-2"
                                             htmlFor="grid-password"
                                             >
+                                            Cost Per Team : <span className="text-danger">{"$" + event.costPerTeam}</span>
+                                        </label>
+                                        <label
+                                            className="block uppercase mt-2 text-blueGray-600 text-sm font-bold mb-2"
+                                            htmlFor="grid-password"
+                                            >
                                             Entry Fee : <span className="text-danger">{"$" + event.entryFee}</span>
                                         </label>
                                         <label
@@ -439,7 +452,7 @@ export default function Checkout() {
                             
                             <div className="col-md-8 ml-auto mr-auto mt-6">
                                     <button
-                                    className="bg-success text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                                    className="bg-warning text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                                     type="button"
                                     onClick={checkout}
                                     >

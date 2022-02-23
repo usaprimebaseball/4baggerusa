@@ -18,6 +18,7 @@ export const getUsers = () => API.get('/account/users');
 export const getUser = (id) => API.get(`/account/users/${id}`);
 
 export const createTeamInvoice = (formData) => API.post('/account/invoices', formData);
+
 export const getInvoices = () => API.get(`/account/invoices`);
 export const getInvoice = (id) => API.get(`/account/invoices/${id}`);
 
@@ -34,8 +35,7 @@ export const updateActivity = (id, updatedUser) => API.patch(`/account/${id}`, u
 export const createEvent = (formData) => API.post(`/events`, formData);
 export const getEvents = () => API.get(`/events`);
 export const getEvent = (id) => API.get(`/events/${id}`);
+export const updateEvent = (id, updatedEvent) => API.patch(`/events/${id}`, updatedEvent);
 
 export const createError = (errorMessage) => API.post(`/errors`, errorMessage);
-
-export const createSuccess = (successMessage) => API.post(`/success`, successMessage);
 

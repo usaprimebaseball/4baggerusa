@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import SelectedTeamCard from "components/Cards/SelectedUserProfileCards/SelectedTeamCard";
 import SelectedPlayerCard from 'components/Cards/SelectedUserProfileCards/SelectedPlayerCard';
 import SelectedDirectorCard from 'components/Cards/SelectedUserProfileCards/SelectedDirectorCard';
@@ -11,7 +10,6 @@ import SelectedOtherCard from 'components/Cards/SelectedUserProfileCards/Selecte
 export default function SelectedUserProfilePage() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('selectedUser')));
   const location = useLocation();
-  const dispatch = useDispatch();
   const history = useHistory();
   const [userRole, setUserRole] = useState("");
   const [userActivity, setUserActivity] = useState("");
